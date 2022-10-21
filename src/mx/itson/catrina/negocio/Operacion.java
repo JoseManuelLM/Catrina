@@ -4,12 +4,26 @@
  */
 package mx.itson.catrina.negocio;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author shiri
  */
 public class Operacion {
     
-    
+    public float[] obtenerMovimientos (String mes){
+        
+        DateFormat formato = new SimpleDateFormat("MM");
+        
+        float[] movimientosMes = null;
+        
+       
+        
+        return movimientosMes;
+        
+    }
     
 }
