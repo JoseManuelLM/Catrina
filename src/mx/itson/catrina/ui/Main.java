@@ -281,7 +281,7 @@ public class Main extends javax.swing.JFrame {
                 Operacion operacion = new Operacion();
                 List<Movimiento> movimientosMes = operacion.obtenerMovimientos(mes, cuenta.getMovimientos());
                 
-                System.out.println("Hola");
+                //System.out.println("Hola");
                 
                 txtArchivo.setText(archivo.toString());
                 
