@@ -6,6 +6,7 @@ package mx.itson.catrina.negocio;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import mx.itson.catrina.entidades.Cuenta;
 import mx.itson.catrina.entidades.Movimiento;
@@ -22,61 +23,183 @@ public class Operacion {
         
         List<Movimiento> movimientosMes = null;
         
-        Movimiento movimiento = new Movimiento();
+        Movimiento movimientosOperacion = new Movimiento();
         
-        if(mes.equals("Enero")){
-           
-           if(formato.format(movimiento.getFecha()).equals("01")){
-               
-               for(Movimiento m : Cuenta.)
-               
-           }
-           
-       }else if(mes.equals("Febrero")){
-           
-           
-           
-       }else if(mes.equals("Marzo")){
-           
-           
-           
-       }else if(mes.equals("Abril")){
-           
-           
-           
-       }else if(mes.equals("Mayo")){
-           
-           
-           
-       }else if(mes.equals("Junio")){
-           
-           
-           
-       }else if(mes.equals("Julio")){
-           
-           
-           
-       }else if(mes.equals("Agosto")){
-           
-           
-           
-       }else if(mes.equals("Septiembre")){
-           
-           
-           
-       }else if(mes.equals("Octubre")){
-           
-           
-           
-       }else if(mes.equals("Noviembre")){
-           
-           
-           
-       }else if(mes.equals("Diciembre")){
-           
-           
-           
-       }
+        switch (mes) {
+            
+            case "Enero":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("01")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }    
+                
+                break;
+                
+            case "Febrero":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("02")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Marzo":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("03")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Abril":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("04")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Mayo":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("05")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Junio":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("06")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Julio":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("07")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Agosto":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("08")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Septiembre":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("09")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Octubre":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("10")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Noviembre":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("11")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            case "Diciembre":
+                
+                if(formato.format(movimientosOperacion.getFecha()).equals("12")){
+                    
+                    for(Movimiento m : movimientos){
+                        
+                        
+                        
+                    }
+                        
+                 }
+                
+                break;
+                
+            default:
+                
+                break;
+                
+        }
         
         return movimientosMes;
         
