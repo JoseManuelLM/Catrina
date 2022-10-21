@@ -13,7 +13,6 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import mx.itson.catrina.entidades.Cuenta;
 import mx.itson.catrina.entidades.Movimiento;
-import mx.itson.catrina.negocio.MovimientoMes;
 import mx.itson.catrina.negocio.Operacion;
 
 /**
