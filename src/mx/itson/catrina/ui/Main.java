@@ -9,8 +9,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.JFileChooser;
 import mx.itson.catrina.entidades.Cuenta;
+import mx.itson.catrina.entidades.Movimiento;
+import mx.itson.catrina.negocio.MovimientosMes;
 import mx.itson.catrina.negocio.Operacion;
 
 /**
@@ -274,10 +277,10 @@ public class Main extends javax.swing.JFrame {
                 
                 Cuenta cuenta = new Cuenta().deserializar(contenido);
                 
-                //String mes = cboMes.getSelectedItem().toString();
+                String mes = cboMes.getSelectedItem().toString();
                 
-                //Operacion operacion = new Operacion();
-                //float[] movimientosMes = obtenerMovimientos(mes);
+                Operacion operacion = new Operacion();
+                List<MovimientosMes> movimientosMes = obtenerMovimientos(mes, cuenta.getMovimientos());
                 
                 txtArchivo.setText(archivo.toString());
                 
@@ -354,7 +357,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField txtTipoCuenta;
     // End of variables declaration//GEN-END:variables
 
-    private float[] obtenerMovimientos(String mes) {
+    private float[] obtenerMovimientos(String mes, List<Movimiento> movimientos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

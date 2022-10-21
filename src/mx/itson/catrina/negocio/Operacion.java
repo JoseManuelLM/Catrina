@@ -6,7 +6,8 @@ package mx.itson.catrina.negocio;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
+import mx.itson.catrina.entidades.Movimiento;
 
 /**
  *
@@ -14,11 +15,11 @@ import java.util.Date;
  */
 public class Operacion {
     
-    public float[] obtenerMovimientos (String mes){
+    public List<MovimientosMes> obtenerMovimientos (String mes, List<Movimiento> movimientos){
         
         DateFormat formato = new SimpleDateFormat("MM");
         
-        float[] movimientosMes = null;
+        List<MovimientosMes> movimientosMes = null;
         
        
         
