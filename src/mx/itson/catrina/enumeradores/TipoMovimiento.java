@@ -4,12 +4,18 @@
  */
 package mx.itson.catrina.enumeradores;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  *
  * @author shiri
  */
 public enum TipoMovimiento {
     
+    @SerializedName("1")
+    DEPÓSITO,
     
+    @SerializedName("2")
+    RETIRO
     
 }
