@@ -15,7 +15,7 @@ public class Movimiento {
     
     private Date fecha;
     private String descripcion;
-    private int cantidad;
+    private float cantidad;
     private TipoMovimiento tipo;
 
     public Date getFecha() {
@@ -34,7 +34,7 @@ public class Movimiento {
         this.descripcion = descripcion;
     }
 
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 

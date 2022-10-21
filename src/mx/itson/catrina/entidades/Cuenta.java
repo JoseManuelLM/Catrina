@@ -4,6 +4,7 @@
  */
 package mx.itson.catrina.entidades;
 
+import com.google.gson.Gson;
 import java.util.List;
 
 
@@ -18,7 +19,30 @@ public class Cuenta {
     private String clabe;
     private String moneda;
     private Cliente cliente;
-    private List<Movimiento> movimmientos;
+    private List<Movimiento> movimientos;
+    
+    /**
+     * Sirve para transformar un archivo json a objetos de java
+     * @param json es el archivo json transformado a binario
+     * @return el archivo ya transformado a objetos de java
+     */
+    public Cuenta deserializar(String json){
+        
+        Cuenta deserializado = new Cuenta();
+        
+        try{
+            
+            deserializado = new Gson().fromJson(json, Cuenta.class);
+            
+        }catch(Exception ex){
+            
+            System.err.print("siOcurrió un error: " + ex.getMessage());
+            
+        }
+        
+        return deserializado;
+        
+    }
 
     public String getProducto() {
         return producto;
@@ -60,12 +84,12 @@ public class Cuenta {
         this.cliente = cliente;
     }
 
-    public List<Movimiento> getMovimmientos() {
-        return movimmientos;
+    public List<Movimiento> getMovimientos() {
+        return movimientos;
     }
 
-    public void setMovimmientos(List<Movimiento> movimmientos) {
-        this.movimmientos = movimmientos;
+    public void setMovimientos(List<Movimiento> movimientos) {
+        this.movimientos = movimientos;
     }
     
 }
