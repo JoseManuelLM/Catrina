@@ -17,6 +17,51 @@ public class Movimiento {
     private String descripcion;
     private float cantidad;
     private TipoMovimiento tipo;
+    private Date fechaOperacion;
+    private String descripcionOperacion;
+    private float deposito;
+    private float retiro;
+    private float subtotal;
+
+    public Date getFechaOperacion() {
+        return fechaOperacion;
+    }
+
+    public void setFechaOperacion(Date fechaOperacion) {
+        this.fechaOperacion = fechaOperacion;
+    }
+
+    public String getDescripcionOperacion() {
+        return descripcionOperacion;
+    }
+
+    public void setDescripcionOperacion(String descripcionOperacion) {
+        this.descripcionOperacion = descripcionOperacion;
+    }
+
+    public float getDeposito() {
+        return deposito;
+    }
+
+    public void setDeposito(float deposito) {
+        this.deposito = deposito;
+    }
+
+    public float getRetiro() {
+        return retiro;
+    }
+
+    public void setRetiro(float retiro) {
+        this.retiro = retiro;
+    }
+
+    public float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
+    }
 
     public Date getFecha() {
         return fecha;

@@ -7,6 +7,7 @@ package mx.itson.catrina.negocio;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import mx.itson.catrina.entidades.Cuenta;
 import mx.itson.catrina.entidades.Movimiento;
 
 /**
@@ -15,13 +16,67 @@ import mx.itson.catrina.entidades.Movimiento;
  */
 public class Operacion {
     
-    public List<MovimientosMes> obtenerMovimientos (String mes, List<Movimiento> movimientos){
+    public List<Movimiento> obtenerMovimientos (String mes, List<Movimiento> movimientos){
         
         DateFormat formato = new SimpleDateFormat("MM");
         
-        List<MovimientosMes> movimientosMes = null;
+        List<Movimiento> movimientosMes = null;
         
-       
+        Movimiento movimiento = new Movimiento();
+        
+        if(mes.equals("Enero")){
+           
+           if(formato.format(movimiento.getFecha()).equals("01")){
+               
+               for(Movimiento m : Cuenta.)
+               
+           }
+           
+       }else if(mes.equals("Febrero")){
+           
+           
+           
+       }else if(mes.equals("Marzo")){
+           
+           
+           
+       }else if(mes.equals("Abril")){
+           
+           
+           
+       }else if(mes.equals("Mayo")){
+           
+           
+           
+       }else if(mes.equals("Junio")){
+           
+           
+           
+       }else if(mes.equals("Julio")){
+           
+           
+           
+       }else if(mes.equals("Agosto")){
+           
+           
+           
+       }else if(mes.equals("Septiembre")){
+           
+           
+           
+       }else if(mes.equals("Octubre")){
+           
+           
+           
+       }else if(mes.equals("Noviembre")){
+           
+           
+           
+       }else if(mes.equals("Diciembre")){
+           
+           
+           
+       }
         
         return movimientosMes;
         

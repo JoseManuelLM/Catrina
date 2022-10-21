@@ -13,7 +13,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import mx.itson.catrina.entidades.Cuenta;
 import mx.itson.catrina.entidades.Movimiento;
-import mx.itson.catrina.negocio.MovimientosMes;
+import mx.itson.catrina.negocio.MovimientoMes;
 import mx.itson.catrina.negocio.Operacion;
 
 /**
@@ -280,11 +280,12 @@ public class Main extends javax.swing.JFrame {
                 String mes = cboMes.getSelectedItem().toString();
                 
                 Operacion operacion = new Operacion();
-                List<MovimientosMes> movimientosMes = obtenerMovimientos(mes, cuenta.getMovimientos());
+                List<Movimiento> movimientosMes = operacion.obtenerMovimientos(mes, cuenta.getMovimientos());
+                
+                System.out.println("Hola");
                 
                 txtArchivo.setText(archivo.toString());
                 
-                System.out.println("Hola");
             }
             
         }catch(Exception ex){
