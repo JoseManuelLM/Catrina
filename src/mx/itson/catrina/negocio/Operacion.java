@@ -6,6 +6,7 @@ package mx.itson.catrina.negocio;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import mx.itson.catrina.entidades.Cuenta;
 import mx.itson.catrina.entidades.Movimiento;
@@ -35,9 +36,10 @@ public class Operacion {
         DateFormat formato2 = new SimpleDateFormat("dd/MM/yy");
         DateFormat formato3 = new SimpleDateFormat("dd");
         
-        List<Movimiento> movimientosMes = null;
+        //List<Movimiento> movimientosMes = null;
         Cuenta cuenta = new Cuenta();
-        Movimiento movimientosOperacion = new Movimiento();
+        //List<Ingrediente> ingredientes = new ArrayList<>();
+        List<Movimiento> movimientosMes = new ArrayList<>();
         
         
         
@@ -49,21 +51,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalEnero += m.getCantidad();
 
-                                       totalEnero += m.getCantidad();
+                                   case RETIRO -> totalEnero -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                        totalEnero -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -73,21 +66,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalFebrero += m.getCantidad();
 
-                                        totalFebrero += m.getCantidad();
+                                   case RETIRO -> totalFebrero -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                        totalFebrero -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -97,21 +81,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalMarzo += m.getCantidad();
 
-                                       totalMarzo += m.getCantidad();
+                                   case RETIRO -> totalMarzo -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                       totalMarzo -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -121,21 +96,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalAbril += m.getCantidad();
 
-                                       totalAbril += m.getCantidad();
+                                   case RETIRO -> totalAbril -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                       totalAbril -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -145,21 +111,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalMayo += m.getCantidad();
 
-                                       totalMayo += m.getCantidad();
+                                   case RETIRO -> totalMayo -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                       totalMayo -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -169,21 +126,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalJunio += m.getCantidad();
 
-                                       totalJunio += m.getCantidad();
+                                   case RETIRO -> totalJunio -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                       totalJunio -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -193,21 +141,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalJulio += m.getCantidad();
 
-                                       totalJulio += m.getCantidad();
+                                   case RETIRO -> totalJulio -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                       totalJulio -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -217,21 +156,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalAgosto += m.getCantidad();
 
-                                       totalAgosto += m.getCantidad();
+                                   case RETIRO -> totalAgosto -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                       totalAgosto -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -241,21 +171,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalSeptiembre += m.getCantidad();
 
-                                       totalSeptiembre += m.getCantidad();
+                                   case RETIRO -> totalSeptiembre -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                       totalSeptiembre -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -265,21 +186,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalOctubre += m.getCantidad();
 
-                                       totalOctubre += m.getCantidad();
+                                   case RETIRO -> totalOctubre -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                       totalOctubre -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
 
@@ -289,21 +201,12 @@ public class Operacion {
 
                             switch(m.getTipo()){
 
-                                   case DEPÓSITO:
+                                   case DEPÓSITO -> totalNoviembre += m.getCantidad();
 
-                                       totalNoviembre += m.getCantidad();
+                                   case RETIRO -> totalNoviembre -= m.getCantidad();
 
-                                       break;
-
-                                   case RETIRO:
-
-                                       totalNoviembre -= m.getCantidad();
-
-                                       break;
-
-                                   default:
-
-                                       break;
+                                   default -> {
+                     }
 
                                }
                     
@@ -313,21 +216,12 @@ public class Operacion {
 
 switch(m.getTipo()){
                            
-                           case DEPÓSITO:
-                               
-                               totalDiciembre += m.getCantidad();
-                               
-                               break;
+                           case DEPÓSITO -> totalDiciembre += m.getCantidad();
                           
-                           case RETIRO:
+                           case RETIRO -> totalDiciembre -= m.getCantidad();
                                
-                               totalDiciembre -= m.getCantidad();
-                               
-                               break;
-                               
-                           default:
-                               
-                               break;
+                           default -> {
+                     }
                            
                        }
                     
@@ -341,10 +235,12 @@ switch(m.getTipo()){
          }
          
                   int posicion = 0;
+                  float totalParcial = 0;
                   
         switch (mes) {
             
             case "Enero" -> {
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("01")){
@@ -354,72 +250,135 @@ switch(m.getTipo()){
                         // ingredientes.add(ingrediente1);
                         //receta.setIngredientes(ingredientes);
                         
+                        Movimiento movimientosOperacion = new Movimiento();
+                        
                         movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
                         movimientosOperacion.setFechaOperacion(m.getFecha());
                         
                         switch(m.getTipo()){
                             
-                            case DEPÓSITO:
+                            case DEPÓSITO -> {
                                 
-                                movimientosOperacion.setDeposito(movimientosOperacion.getCantidad());
+                                movimientosOperacion.setDeposito(m.getCantidad());
                                 
                                 if(posicion == 0){
                                     
                                     movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
-                                    movimientosOperacion.setSubtotal(totalEnero + movimientosOperacion.getDeposito());
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
                                     
                                 }
                                 
-                                break;
+                            }
                                 
-                            case RETIRO:
+                            case RETIRO -> {
                                 
-                                movimientosOperacion.setRetiro(movimientosOperacion.getCantidad());
-                                movimientosOperacion.setSubtotal(totalEnero - movimientosOperacion.getDeposito());
+                                movimientosOperacion.setRetiro(m.getCantidad());
                                 
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
                                 
-                                break;
+                            }
                                 
-                            default:
-                                
-                                break;
+                            default -> {
+                            }
                                 
                         }
                         
                         posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                     
                     }
                     
                 }
                 
                 //pasos.add(paso3);
-                movimientosMes.add(movimientosOperacion);
                 //receta.setPasos(pasos);
-                cuenta.setMovimientosOp(movimientosMes);
+                //movimientosMes.add(movimientosOperacion);
+                //cuenta.setMovimientosOp(movimientosMes);
+                
             }
                 
             case "Febrero" -> {
+                
+                Movimiento movimientosOperacion = new Movimiento();
+                
                 for(Movimiento m : movimientos){
                 
                     if(formato.format(movimientosOperacion.getFecha()).equals("02")){
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(m.getFecha());
                         
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(totalEnero + movimientosOperacion.getDeposito());
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(totalEnero - movimientosOperacion.getRetiro());
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
                         
                     }
                     
+                    movimientosMes.add(movimientosOperacion);
+                    cuenta.setMovimientosOp(movimientosMes);
+                    
                 }
                 
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
             }
                 
-            case "Marzo" -> {
+           /* case "Marzo" -> {
                 for(Movimiento m : movimientos){
                 
-                    if(formato.format(movimientosOperacion.getFecha()).equals("03")){
+                    if(formato.format(m.getFecha()).equals("03")){
                         
                         
                         
@@ -429,12 +388,13 @@ switch(m.getTipo()){
                 
                 movimientosMes.add(movimientosOperacion);
                 cuenta.setMovimientosOp(movimientosMes);
+                
             }
                 
             case "Abril" -> {
                 for(Movimiento m : movimientos){
                     
-                    if(formato.format(movimientosOperacion.getFecha()).equals("04")){
+                    if(formato.format(m.getFecha()).equals("04")){
                         
                         
                         
@@ -444,12 +404,13 @@ switch(m.getTipo()){
                 
                 movimientosMes.add(movimientosOperacion);
                 cuenta.setMovimientosOp(movimientosMes);
+                
             }
                 
             case "Mayo" -> {
                 for(Movimiento m : movimientos){
                     
-                    if(formato.format(movimientosOperacion.getFecha()).equals("05")){
+                    if(formato.format(m.getFecha()).equals("05")){
                         
                         
                         
@@ -459,12 +420,13 @@ switch(m.getTipo()){
                 
                 movimientosMes.add(movimientosOperacion);
                 cuenta.setMovimientosOp(movimientosMes);
+                
             }
                 
             case "Junio" -> {
                 for(Movimiento m : movimientos){
                 
-                    if(formato.format(movimientosOperacion.getFecha()).equals("06")){
+                    if(formato.format(m.getFecha()).equals("06")){
                         
                         
                         
@@ -474,12 +436,13 @@ switch(m.getTipo()){
                 
                 movimientosMes.add(movimientosOperacion);
                 cuenta.setMovimientosOp(movimientosMes);
+                
             }
                 
             case "Julio" -> {
                 for(Movimiento m : movimientos){
                     
-                    if(formato.format(movimientosOperacion.getFecha()).equals("07")){
+                    if(formato.format(m.getFecha()).equals("07")){
                         
                         
                         
@@ -489,12 +452,13 @@ switch(m.getTipo()){
                 
                 movimientosMes.add(movimientosOperacion);
                 cuenta.setMovimientosOp(movimientosMes);
+                
             }
                 
             case "Agosto" -> {
                 for(Movimiento m : movimientos){
                     
-                    if(formato.format(movimientosOperacion.getFecha()).equals("08")){
+                    if(formato.format(m.getFecha()).equals("09")){
                         
                         
                         
@@ -504,27 +468,13 @@ switch(m.getTipo()){
                 
                 movimientosMes.add(movimientosOperacion);
                 cuenta.setMovimientosOp(movimientosMes);
-            }
                 
-            case "Septiembre" -> {
-                for(Movimiento m : movimientos){
-                    
-                    if(formato.format(movimientosOperacion.getFecha()).equals("09")){
-                        
-                        
-                        
-                    }
-                    
-                }
-                
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
             }
                 
             case "Octubre" -> {
                 for(Movimiento m : movimientos){
                     
-                    if(formato.format(movimientosOperacion.getFecha()).equals("10")){
+                    if(formato.format(m.getFecha()).equals("10")){
                         
                         
                         
@@ -534,12 +484,13 @@ switch(m.getTipo()){
                 
                 movimientosMes.add(movimientosOperacion);
                 cuenta.setMovimientosOp(movimientosMes);
+                
             }
                 
             case "Noviembre" -> {
                 for(Movimiento m : movimientos){
                     
-                    if(formato.format(movimientosOperacion.getFecha()).equals("11")){
+                    if(formato.format(m.getFecha()).equals("11")){
                         
                         
                         
@@ -549,12 +500,13 @@ switch(m.getTipo()){
                 
                 movimientosMes.add(movimientosOperacion);
                 cuenta.setMovimientosOp(movimientosMes);
+                
             }
                 
             case "Diciembre" -> {
                 for(Movimiento m : movimientos){
                     
-                    if(formato.format(movimientosOperacion.getFecha()).equals("12")){
+                    if(formato.format(m.getFecha()).equals("12")){
                         
                         
                         
@@ -564,10 +516,11 @@ switch(m.getTipo()){
                 
                 movimientosMes.add(movimientosOperacion);
                 cuenta.setMovimientosOp(movimientosMes);
+                
             }
                 
             default -> {
-            }
+            }*/
                 
         }
         
