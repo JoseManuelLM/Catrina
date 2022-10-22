@@ -253,7 +253,7 @@ switch(m.getTipo()){
                         Movimiento movimientosOperacion = new Movimiento();
                         
                         movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
-                        movimientosOperacion.setFechaOperacion(m.getFecha());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
                         
                         switch(m.getTipo()){
                             
@@ -316,14 +316,16 @@ switch(m.getTipo()){
                 
             case "Febrero" -> {
                 
-                Movimiento movimientosOperacion = new Movimiento();
+               // Movimiento movimientosOperacion = new Movimiento();
                 
                 for(Movimiento m : movimientos){
                 
-                    if(formato.format(movimientosOperacion.getFecha()).equals("02")){
+                    if(formato.format(m.getFecha()).equals("02")){
+                        
+                        Movimiento movimientosOperacion = new Movimiento();
                         
                         movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
-                        movimientosOperacion.setFechaOperacion(m.getFecha());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
                         
                         switch(m.getTipo()){
                             
@@ -333,11 +335,13 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(totalEnero + movimientosOperacion.getDeposito());
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
                                     movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
                                     
                                 }
                                 
@@ -349,11 +353,13 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(totalEnero - movimientosOperacion.getRetiro());
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
                                     movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
                                     
                                 }
                                 
@@ -366,28 +372,76 @@ switch(m.getTipo()){
                         
                         posicion++;
                         
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
+                        
                     }
-                    
-                    movimientosMes.add(movimientosOperacion);
-                    cuenta.setMovimientosOp(movimientosMes);
                     
                 }
                 
             }
                 
-           /* case "Marzo" -> {
+           case "Marzo" -> {
                 for(Movimiento m : movimientos){
                 
                     if(formato.format(m.getFecha()).equals("03")){
                         
+                        Movimiento movimientosOperacion = new Movimiento();
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
                 }
-                
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
                 
             }
                 
@@ -396,14 +450,62 @@ switch(m.getTipo()){
                     
                     if(formato.format(m.getFecha()).equals("04")){
                         
+                        Movimiento movimientosOperacion = new Movimiento();
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
                 }
-                
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
                 
             }
                 
@@ -412,14 +514,62 @@ switch(m.getTipo()){
                     
                     if(formato.format(m.getFecha()).equals("05")){
                         
+                        Movimiento movimientosOperacion = new Movimiento();
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
                 }
-                
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
                 
             }
                 
@@ -428,14 +578,62 @@ switch(m.getTipo()){
                 
                     if(formato.format(m.getFecha()).equals("06")){
                         
+                        Movimiento movimientosOperacion = new Movimiento();
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
                 }
-                
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
                 
             }
                 
@@ -444,30 +642,190 @@ switch(m.getTipo()){
                     
                     if(formato.format(m.getFecha()).equals("07")){
                         
+                        Movimiento movimientosOperacion = new Movimiento();
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
                 }
-                
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
                 
             }
                 
             case "Agosto" -> {
                 for(Movimiento m : movimientos){
                     
-                    if(formato.format(m.getFecha()).equals("09")){
+                    if(formato.format(m.getFecha()).equals("08")){
                         
+                        Movimiento movimientosOperacion = new Movimiento();
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
                 }
                 
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
+            }
+            
+            case "Septiembre" -> {
+                for(Movimiento m : movimientos){
+                    
+                    if(formato.format(m.getFecha()).equals("09")){
+                        
+                        Movimiento movimientosOperacion = new Movimiento();
+                        
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
+                        
+                    }
+                    
+                }
                 
             }
                 
@@ -476,14 +834,62 @@ switch(m.getTipo()){
                     
                     if(formato.format(m.getFecha()).equals("10")){
                         
+                        Movimiento movimientosOperacion = new Movimiento();
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
                 }
-                
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
                 
             }
                 
@@ -492,14 +898,62 @@ switch(m.getTipo()){
                     
                     if(formato.format(m.getFecha()).equals("11")){
                         
+                        Movimiento movimientosOperacion = new Movimiento();
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
                 }
-                
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
                 
             }
                 
@@ -508,19 +962,67 @@ switch(m.getTipo()){
                     
                     if(formato.format(m.getFecha()).equals("12")){
                         
+                        Movimiento movimientosOperacion = new Movimiento();
                         
+                        movimientosOperacion.setDescripcionOperacion(m.getDescripcion());
+                        movimientosOperacion.setFechaOperacion(formato2.format(m.getFecha()));
+                        
+                        switch(m.getTipo()){
+                            
+                            case DEPÓSITO -> {
+                                
+                                movimientosOperacion.setDeposito(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
+                                    totalParcial = movimientosOperacion.getDeposito();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial + movimientosOperacion.getDeposito());
+                                    totalParcial += movimientosOperacion.getDeposito();
+                                    
+                                }
+                                
+                            }
+                                
+                            case RETIRO -> {
+                                
+                                movimientosOperacion.setRetiro(m.getCantidad());
+                                
+                                if(posicion == 0){
+                                    
+                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
+                                    totalParcial = movimientosOperacion.getRetiro();
+                                    
+                                }else{
+                                    
+                                    movimientosOperacion.setSubtotal(totalParcial -  movimientosOperacion.getRetiro());
+                                    totalParcial -= movimientosOperacion.getRetiro();
+                                    
+                                }
+                                
+                            }
+                                
+                            default -> {
+                            }
+                                
+                        }
+                        
+                        posicion++;
+                        
+                        movimientosMes.add(movimientosOperacion);
+                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
                 }
                 
-                movimientosMes.add(movimientosOperacion);
-                cuenta.setMovimientosOp(movimientosMes);
-                
             }
                 
             default -> {
-            }*/
+            }
                 
         }
         

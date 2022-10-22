@@ -17,17 +17,17 @@ public class Movimiento {
     private String descripcion;
     private float cantidad;
     private TipoMovimiento tipo;
-    private Date fechaOperacion;
+    private String fechaOperacion;
     private String descripcionOperacion;
     private float deposito;
     private float retiro;
     private float subtotal;
 
-    public Date getFechaOperacion() {
+    public String getFechaOperacion() {
         return fechaOperacion;
     }
 
-    public void setFechaOperacion(Date fechaOperacion) {
+    public void setFechaOperacion(String fechaOperacion) {
         this.fechaOperacion = fechaOperacion;
     }
 

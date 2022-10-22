@@ -21,6 +21,11 @@ import mx.itson.catrina.negocio.Operacion;
  */
 public class Main extends javax.swing.JFrame {
 
+    Cuenta cuenta;
+    Operacion operacion = new Operacion();
+    String mes;
+    int key = 0;
+    
     /**
      * Creates new form Main
      */
@@ -269,21 +274,27 @@ public class Main extends javax.swing.JFrame {
             
             if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
                 
+                key++;
+                
                 File archivo = fileChooser.getSelectedFile();
                 byte archivoBytes[] = Files.readAllBytes(archivo.toPath());
                 String contenido = new String(archivoBytes, StandardCharsets.UTF_8);
-                DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 
-                Cuenta cuenta = new Cuenta().deserializar(contenido);
+                cuenta = new Cuenta().deserializar(contenido);
                 
-                String mes = cboMes.getSelectedItem().toString();
+                mes = cboMes.getSelectedItem().toString();
                 
-                Operacion operacion = new Operacion();
                 operacion.obtenerMovimientos(mes, cuenta.getMovimientos());
                 
                 //System.out.println("Hola");
                 
                 txtArchivo.setText(archivo.toString());
+                
+            }
+            
+            if(key > 1){
+                
+                key--;
                 
             }
             
