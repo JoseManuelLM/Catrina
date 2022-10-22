@@ -6,6 +6,7 @@ package mx.itson.catrina.entidades;
 
 import com.google.gson.Gson;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -37,7 +38,7 @@ public class Cuenta {
             
         }catch(Exception ex){
             
-            System.err.print("siOcurrió un error: " + ex.getMessage());
+            System.err.print("Ocurrió un error: " + ex.getMessage());
             
         }
         
