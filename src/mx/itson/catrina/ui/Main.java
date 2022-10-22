@@ -261,10 +261,13 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+/*
     private void cboMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboMesActionPerformed
-
+*/
+    
+    
     private void btnSeleccioneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccioneActionPerformed
         
         try{
@@ -306,10 +309,11 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnSeleccioneActionPerformed
 
+/*
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
-    
+ */
     /**
      * @param args the command line arguments
      */
