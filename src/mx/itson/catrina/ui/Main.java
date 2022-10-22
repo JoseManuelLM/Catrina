@@ -73,11 +73,11 @@ public class Main extends javax.swing.JFrame {
 
         cboMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cboMes.setToolTipText("");
-        cboMes.addActionListener(new java.awt.event.ActionListener() {
+        /*cboMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboMesActionPerformed(evt);
             }
-        });
+        });*/
 
         btnSeleccione.setText("Seleccione...");
         btnSeleccione.addActionListener(new java.awt.event.ActionListener() {
@@ -171,11 +171,11 @@ public class Main extends javax.swing.JFrame {
         jTextField4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField4.setText("S:ALDO FINAL DEL PERIODO:");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        /*jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
             }
-        });
+        });*/
 
         jTextField5.setBackground(new java.awt.Color(255, 153, 0));
         jTextField5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
