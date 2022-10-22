@@ -35,10 +35,10 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <Component id="cboMes" min="-2" pref="250" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="86" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="txtArchivo" min="-2" pref="398" max="-2" attributes="0"/>
+                              <Component id="txtArchivo" min="-2" pref="330" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnSeleccione" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -65,7 +65,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jTextField4" min="-2" pref="716" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField5" max="32767" attributes="0"/>
+                      <Component id="jTextField5" pref="114" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
