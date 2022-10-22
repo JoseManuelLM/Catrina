@@ -20,6 +20,7 @@ public class Cuenta {
     private String moneda;
     private Cliente cliente;
     private List<Movimiento> movimientos;
+    private List<Movimiento> movimientosOp;
     
     /**
      * Sirve para transformar un archivo json a objetos de java
@@ -90,6 +91,14 @@ public class Cuenta {
 
     public void setMovimientos(List<Movimiento> movimientos) {
         this.movimientos = movimientos;
+    }
+
+    public List<Movimiento> getMovimientosOp() {
+        return movimientosOp;
+    }
+
+    public void setMovimientosOp(List<Movimiento> movimientosOp) {
+        this.movimientosOp = movimientosOp;
     }
     
 }
