@@ -61,8 +61,9 @@ public class Main extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tblMovimientos = new javax.swing.JTable();
         jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtSaldoFinal = new javax.swing.JTextField();
         btnCargarMes = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Catrina");
@@ -183,9 +184,9 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(255, 153, 0));
-        jTextField5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtSaldoFinal.setEditable(false);
+        txtSaldoFinal.setBackground(new java.awt.Color(255, 153, 0));
+        txtSaldoFinal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         btnCargarMes.setText("Cargar mes");
         btnCargarMes.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +194,9 @@ public class Main extends javax.swing.JFrame {
                 btnCargarMesActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel3.setText("$");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,7 +220,9 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSaldoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -271,7 +277,8 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSaldoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -341,10 +348,16 @@ public class Main extends javax.swing.JFrame {
                  modelo2.addRow(new Object[] {"Saldo final", String.format("$%39.2f", saldoFinal)});//31839.30
                  
                  for(Movimiento m : mov){
+                    
                      
-                modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%35.2f", m.getDeposito()), String.format("$%35.2f", m.getRetiro()), String.format("$%35.2f", m.getSubtotal())});
+                     
+                    modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%35.2f", m.getDeposito()), String.format("$%35.2f", m.getRetiro()), String.format("$%35.2f", m.getSubtotal())});
                      
                  }
+                 
+                 
+                 
+                txtSaldoFinal.setText( String.format("%35.2f", saldoFinal));
                 
             }
             
@@ -406,9 +419,11 @@ public class Main extends javax.swing.JFrame {
                  
                  for(Movimiento m : mov){
                      
-                modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%35.2f", m.getDeposito()), String.format("$%35.2f", m.getRetiro()), String.format("$%35.2f", m.getSubtotal())});
+                    modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%35.2f", m.getDeposito()), String.format("$%35.2f", m.getRetiro()), String.format("$%35.2f", m.getSubtotal())});
                      
                  }
+                 
+                  txtSaldoFinal.setText(String.format("%35.2f", saldoFinal));
 
             }else{
 
@@ -473,6 +488,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboMes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -481,13 +497,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTable tblCuenta;
     private javax.swing.JTable tblDatosCliente;
     private javax.swing.JTable tblMovimientos;
     private javax.swing.JTable tblResumenPeriodo;
     private javax.swing.JTextField txtArchivo;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtSaldoFinal;
     private javax.swing.JTextField txtTipoCuenta;
     // End of variables declaration//GEN-END:variables
 
