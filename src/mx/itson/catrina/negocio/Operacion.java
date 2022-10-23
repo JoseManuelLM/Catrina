@@ -7,8 +7,8 @@ package mx.itson.catrina.negocio;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import mx.itson.catrina.entidades.Cuenta;
 import mx.itson.catrina.entidades.Movimiento;
 
 /**
@@ -17,36 +17,43 @@ import mx.itson.catrina.entidades.Movimiento;
  */
 public class Operacion {
     
-    int totalEnero = 0;
-    int totalFebrero = 0;
-    int totalMarzo = 0;
-    int totalAbril = 0;
-    int totalMayo = 0;
-    int totalJunio = 0;
-    int totalJulio = 0;
-    int totalAgosto = 0;
-    int totalSeptiembre = 0;
-    int totalOctubre = 0;
-    int totalNoviembre = 0;
+    float totalEnero = 0;
+    float totalFebrero = 0;
+    float totalMarzo = 0;
+    float totalAbril = 0;
+    float totalMayo = 0;
+    float totalJunio = 0;
+    float totalJulio = 0;
+    float totalAgosto = 0;
+    float totalSeptiembre = 0;
+    float totalOctubre = 0;
+    float totalNoviembre = 0;
     
-    public void obtenerMovimientos (String mes, List<Movimiento> movimientos){
+    /**
+     *  Aqui se hace todos los calculos y acomodos para su posterior impresion, no devuelve nada, ya que todo se guarda en un ArrayList en la entidad Cuenta
+     * @param mes Se recibe el mes con el que se van a hacer calculos
+     * @param movimientos se recibe el ArrayList para los calculos
+     * @return Retorna el ArrayList de los movimientos para despues mostrarlos
+     */
+    public List<Movimiento> obtenerMovimientos (String mes, List<Movimiento> movimientos/*, List<Movimiento> auxiliar03*/){
         
         DateFormat formato = new SimpleDateFormat("MM");
         DateFormat formato2 = new SimpleDateFormat("dd/MM/yy");
-        DateFormat formato3 = new SimpleDateFormat("d");
+        
+        List<Movimiento> movimientosMes = new ArrayList<>();
         
         //List<Movimiento> movimientosMes = null;
-        Cuenta cuenta = new Cuenta();
-        Movimiento movimientos1 = new Movimiento();
-        Movimiento movimientos2 = new Movimiento();
-        Movimiento movimientos3 = new Movimiento();
+        //Movimiento movimientos1 = new Movimiento();
+       // Movimiento movimientos2 = new Movimiento();
+        //Movimiento movimientos3 = new Movimiento();
         //List<Ingrediente> ingredientes = new ArrayList<>();
-        List<Movimiento> movimientosMes = new ArrayList<>();
-        List<Movimiento> auxiliar = new ArrayList<>();
-        List<Movimiento> auxiliar1 = new ArrayList<>();
-        List<Movimiento> auxiliar2 = new ArrayList<>();
+        //List<Movimiento> auxiliar = new ArrayList<>();
+       // List<Movimiento> auxiliar1 = new ArrayList<>();
+       // List<Movimiento> auxiliar2 = new ArrayList<>();
         
-        for(Movimiento m : movimientos){//i
+       Collections.sort(movimientos);
+       
+       /* for(Movimiento m : movimientos){//i
 
                 for(Movimiento m1 : movimientos){//j
 
@@ -64,6 +71,7 @@ public class Operacion {
                        movimientos1.setDescripcion(m.getDescripcion());
                        movimientos1.setTipo(m.getTipo());
                        auxiliar.add(movimientos1);
+                       cuenta.setAuxiliar01(auxiliar);
                        
                        movimientos2.setFecha(m1.getFecha());
                        movimientos2.setCantidad(m1.getCantidad());
@@ -72,21 +80,34 @@ public class Operacion {
                        auxiliar1.add(movimientos2);
                        cuenta.setAuxiliar02(auxiliar1);
                        
+                       Movimiento a = new Movimiento();
+                       cuenta.getAuxiliar01().add(a);
                        
-                       
-                            movimientos3.setFecha(auxiliar.getFecha());
-                            movimientos3.setCantidad(auxiliar.getCantidad());
-                            movimientos3.setDescripcion(auxiliar.getDescripcion());
-                            movimientos3.setTipo(auxiliar.getTipo());
+                            movimientos3.setFecha(a.getFecha());
+                            movimientos3.setCantidad(a.getCantidad());
+                            movimientos3.setDescripcion(a.getDescripcion());
+                            movimientos3.setTipo(a.getTipo());
                             auxiliar2.add(movimientos3);
-                            cuenta.setMovimientos(auxiliar2);
+                            cuenta.setAuxiliar03(auxiliar2);
                             
                     }
 
                     }
 
-                }
+                }*/
         
+        totalEnero = 0;
+         totalFebrero = 0;
+          totalMarzo = 0;
+             totalAbril = 0;
+        totalMayo = 0;
+         totalJunio = 0;
+         totalJulio = 0;
+         totalAgosto = 0;
+         totalSeptiembre = 0;
+         totalOctubre = 0;
+         totalNoviembre = 0;
+       
          for(Movimiento m : movimientos){
              
              switch (formato.format(m.getFecha())) {
@@ -270,6 +291,8 @@ public class Operacion {
             
             case "Enero" -> {
                 
+                //mov.setSaldoAnterior(0);
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("01")){
@@ -330,7 +353,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                     
                     }
                     
@@ -346,6 +368,7 @@ public class Operacion {
             case "Febrero" -> {
                 
                // Movimiento movimientosOperacion = new Movimiento();
+               //mov.setSaldoAnterior(totalEnero);
                 
                 for(Movimiento m : movimientos){
                 
@@ -402,7 +425,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -411,6 +433,9 @@ public class Operacion {
             }
                 
            case "Marzo" -> {
+               
+               //mov.setSaldoAnterior(totalEnero + totalFebrero);
+               
                 for(Movimiento m : movimientos){
                 
                     if(formato.format(m.getFecha()).equals("03")){
@@ -466,7 +491,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -475,6 +499,9 @@ public class Operacion {
             }
                 
             case "Abril" -> {
+                
+                //mov.setSaldoAnterior(totalEnero + totalFebrero + totalMarzo);
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("04")){
@@ -530,7 +557,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -539,6 +565,9 @@ public class Operacion {
             }
                 
             case "Mayo" -> {
+                
+                //mov.setSaldoAnterior(totalEnero + totalFebrero + totalMarzo + totalAbril);
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("05")){
@@ -594,7 +623,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -603,6 +631,9 @@ public class Operacion {
             }
                 
             case "Junio" -> {
+                
+               // mov.setSaldoAnterior(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo);
+                
                 for(Movimiento m : movimientos){
                 
                     if(formato.format(m.getFecha()).equals("06")){
@@ -658,7 +689,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -667,6 +697,9 @@ public class Operacion {
             }
                 
             case "Julio" -> {
+                
+                //mov.setSaldoAnterior(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio);
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("07")){
@@ -722,7 +755,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -731,6 +763,9 @@ public class Operacion {
             }
                 
             case "Agosto" -> {
+                
+               // mov.setSaldoAnterior(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio);
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("08")){
@@ -786,7 +821,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -795,6 +829,9 @@ public class Operacion {
             }
             
             case "Septiembre" -> {
+                
+                //mov.setSaldoAnterior(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto);
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("09")){
@@ -850,7 +887,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -859,6 +895,9 @@ public class Operacion {
             }
                 
             case "Octubre" -> {
+                
+                //mov.setSaldoAnterior(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre);
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("10")){
@@ -914,7 +953,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -923,6 +961,9 @@ public class Operacion {
             }
                 
             case "Noviembre" -> {
+                
+                //mov.setSaldoAnterior(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre);
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("11")){
@@ -978,7 +1019,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -987,6 +1027,9 @@ public class Operacion {
             }
                 
             case "Diciembre" -> {
+                
+                //mov.setSaldoAnterior(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre + totalNoviembre);
+                
                 for(Movimiento m : movimientos){
                     
                     if(formato.format(m.getFecha()).equals("12")){
@@ -1042,7 +1085,6 @@ public class Operacion {
                         posicion++;
                         
                         movimientosMes.add(movimientosOperacion);
-                        cuenta.setMovimientosOp(movimientosMes);
                         
                     }
                     
@@ -1055,7 +1097,108 @@ public class Operacion {
                 
         }
         
-        System.out.println("Hola");
+        //System.out.println("Hola");
+        
+        return movimientosMes;
+        
+    }
+    
+    public float obtenerSaldoInicial (String mes, List<Movimiento> movimientos){
+        
+        float saldoInicial = 0;
+        
+        switch (mes) {
+            
+            case "Enero" -> {
+
+                saldoInicial = 0;
+                
+            }
+                
+            case "Febrero" -> {
+
+                saldoInicial = 0;
+               saldoInicial = totalEnero;
+                
+            }
+                
+           case "Marzo" -> {
+               
+               saldoInicial = 0;
+               saldoInicial = totalEnero + totalFebrero;
+                
+            }
+                
+            case "Abril" -> {
+                
+                saldoInicial = 0;
+                saldoInicial = totalEnero + totalFebrero + totalMarzo;
+                
+            }
+                
+            case "Mayo" -> {
+                
+                saldoInicial = 0;
+               saldoInicial = totalEnero + totalFebrero + totalMarzo + totalAbril;
+                
+            }
+                
+            case "Junio" -> {
+                
+                saldoInicial = 0;
+                saldoInicial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo;
+                
+            }
+                
+            case "Julio" -> {
+                
+                saldoInicial = 0;
+               saldoInicial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio;
+
+                
+            }
+                
+            case "Agosto" -> {
+                
+                saldoInicial = 0;
+                saldoInicial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio;
+                
+            }
+            
+            case "Septiembre" -> {
+                
+                saldoInicial = 0;
+                saldoInicial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto;
+                
+            }
+                
+            case "Octubre" -> {
+                
+                saldoInicial = 0;
+                saldoInicial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre;
+                
+            }
+                
+            case "Noviembre" -> {
+                
+                saldoInicial = 0;
+              saldoInicial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre;
+                
+            }
+                
+            case "Diciembre" -> {
+                
+                saldoInicial = 0;
+               saldoInicial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre + totalNoviembre;
+                
+            }
+                
+            default -> {
+            }
+                
+        }
+        
+        return saldoInicial;
         
     }
     

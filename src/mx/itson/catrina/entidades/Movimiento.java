@@ -4,14 +4,16 @@
  */
 package mx.itson.catrina.entidades;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import mx.itson.catrina.enumeradores.TipoMovimiento;
 
 /**
- *
+ * Aqui se inicializan todas las variables del Array tipo Movimiento
  * @author shiri
  */
-public class Movimiento {
+public class Movimiento implements Comparable<Movimiento> {
     
     private Date fecha;
     private String descripcion;
@@ -93,6 +95,20 @@ public class Movimiento {
 
     public void setTipo(TipoMovimiento tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    /**
+     * Sirve para hacer las comparaciones necesarias para acomodar el ArrayList
+     */
+    public int compareTo(Movimiento o) {
+        
+        DateFormat formato3 = new SimpleDateFormat("dd");
+         
+        String a = formato3.format(this.getFecha());
+        String b = formato3.format(o.getFecha());
+        return a.compareTo(b);
+        
     }
     
 }

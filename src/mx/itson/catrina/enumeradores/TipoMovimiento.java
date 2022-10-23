@@ -7,7 +7,7 @@ package mx.itson.catrina.enumeradores;
 import com.google.gson.annotations.SerializedName;
 
 /**
- *
+ *  Aqui se inicializan las variables enumeradoras
  * @author shiri
  */
 public enum TipoMovimiento {

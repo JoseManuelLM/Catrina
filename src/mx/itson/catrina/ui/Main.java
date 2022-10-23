@@ -301,12 +301,18 @@ public class Main extends javax.swing.JFrame {
                     modelo2.setRowCount(0);
                     DefaultTableModel modelo3 = (DefaultTableModel) tblMovimientos.getModel();
                     modelo3.setRowCount(0);
+                    float depositos = 0;
+                    float retiros = 0;
+                    float saldoFinal = 0;
                 
                 cuenta = new Cuenta().deserializar(contenido);
                 
                 mes = cboMes.getSelectedItem().toString();
                 
-                operacion.obtenerMovimientos(mes, cuenta.getMovimientos());
+                List<Movimiento> mov = operacion.obtenerMovimientos(mes, cuenta.getMovimientos()/*, cuenta.getAuxiliar03()*/);
+                float saldoAnterior = operacion.obtenerSaldoInicial(mes, cuenta.getMovimientos());
+                
+                //Cuenta mov2 = new Cuenta();
                 
                 //System.out.println("Hola");
                 
@@ -320,10 +326,25 @@ public class Main extends javax.swing.JFrame {
                  modelo1.addRow(new Object[] {"CUENTA", String.format("%28s", cuenta.getCuenta())}); //28
                  modelo1.addRow(new Object[] {"CLABE", String.format("%18s", cuenta.getClabe())});
                  modelo1.addRow(new Object[] {"MONEDA", String.format("%37s", cuenta.getMoneda())});
-                 modelo2.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%37s", cuenta.getMoneda())});
-                 modelo2.addRow(new Object[] {"Depósitos", String.format("$%37s", cuenta.getMoneda())});
-                 modelo2.addRow(new Object[] {"Retiros", String.format("$%37s", cuenta.getMoneda())});
-                 modelo2.addRow(new Object[] {"Saldo final", String.format("$%37s", cuenta.getMoneda())});
+                 
+                  for(Movimiento m : mov){
+                
+                     depositos += m.getDeposito();
+                     retiros += m.getRetiro();
+                     saldoFinal = m.getSubtotal();
+                
+                }
+                 
+                 modelo2.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%39.2f", saldoAnterior)});
+                 modelo2.addRow(new Object[] {"Depósitos", String.format("$%39.2f", depositos)});
+                 modelo2.addRow(new Object[] {"Retiros", String.format("$%39.2f", retiros)});
+                 modelo2.addRow(new Object[] {"Saldo final", String.format("$%39.2f", saldoFinal)});//31839.30
+                 
+                 for(Movimiento m : mov){
+                     
+                modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%35.2f", m.getDeposito()), String.format("$%35.2f", m.getRetiro()), String.format("$%35.2f", m.getSubtotal())});
+                     
+                 }
                 
             }
             
@@ -355,17 +376,39 @@ public class Main extends javax.swing.JFrame {
                     modelo.setRowCount(0);
                     DefaultTableModel modelo2 = (DefaultTableModel) tblMovimientos.getModel();
                     modelo2.setRowCount(0);
+                    //Cuenta mov2 = new Cuenta();
+                    float depositos = 0;
+                    float retiros = 0;
+                    float saldoFinal = 0;
+                
                     
                 mes = cboMes.getSelectedItem().toString();
                 
-                operacion.obtenerMovimientos(mes, cuenta.getMovimientos());
+                List<Movimiento> mov = operacion.obtenerMovimientos(mes, cuenta.getMovimientos()/*, cuenta.getAuxiliar03()*/);
+                float saldoAnterior = operacion.obtenerSaldoInicial(mes, cuenta.getMovimientos());
+                
+                Cuenta mov2 = new Cuenta();
                 
                 //System.out.println("Hola");
                 
-                 modelo.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%37s", cuenta.getMoneda())});
-                 modelo.addRow(new Object[] {"Depósitos", String.format("$%37s", cuenta.getMoneda())});
-                 modelo.addRow(new Object[] {"Retiros", String.format("$%37s", cuenta.getMoneda())});
-                 modelo.addRow(new Object[] {"Saldo final", String.format("$%37s", cuenta.getMoneda())});
+                 for(Movimiento m : mov){
+                
+                     depositos += m.getDeposito();
+                     retiros += m.getRetiro();
+                     saldoFinal = m.getSubtotal();
+                
+                }
+                 
+                 modelo.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%39.2f", saldoAnterior)});
+                 modelo.addRow(new Object[] {"Depósitos", String.format("$%39.2f", depositos)});
+                 modelo.addRow(new Object[] {"Retiros", String.format("$%39.2f", retiros)});
+                 modelo.addRow(new Object[] {"Saldo final", String.format("$%39.2f", saldoFinal)});//31839.30
+                 
+                 for(Movimiento m : mov){
+                     
+                modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%35.2f", m.getDeposito()), String.format("$%35.2f", m.getRetiro()), String.format("$%35.2f", m.getSubtotal())});
+                     
+                 }
 
             }else{
 

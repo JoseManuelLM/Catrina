@@ -5,7 +5,7 @@
 package mx.itson.catrina.entidades;
 
 /**
- *
+ *  Aqui se inicializan todas las variables del Array tipo Cliente
  * @author shiri
  */
 public class Cliente {
