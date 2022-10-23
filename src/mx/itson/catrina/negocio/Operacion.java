@@ -59,31 +59,33 @@ public class Operacion {
                         //num[i] = num[j];
                        // num[j] = aux;
                        
-                       
-                       
                        movimientos1.setFecha(m.getFecha());
                        movimientos1.setCantidad(m.getCantidad());
                        movimientos1.setDescripcion(m.getDescripcion());
+                       movimientos1.setTipo(m.getTipo());
                        auxiliar.add(movimientos1);
-                       cuenta.setAuxiliar01(auxiliar);
                        
                        movimientos2.setFecha(m1.getFecha());
                        movimientos2.setCantidad(m1.getCantidad());
                        movimientos2.setDescripcion(m1.getDescripcion());
+                       movimientos2.setTipo(m1.getTipo());
                        auxiliar1.add(movimientos2);
                        cuenta.setAuxiliar02(auxiliar1);
                        
-                       movimientos3.setFecha(m.getFecha());
-                       movimientos3.setCantidad(m.getCantidad());
-                       movimientos3.setDescripcion(m.getDescripcion());
-                       auxiliar2.add(movimientos3);
-                       cuenta.setMovimientos(auxiliar2);
+                       
+                       
+                            movimientos3.setFecha(auxiliar.getFecha());
+                            movimientos3.setCantidad(auxiliar.getCantidad());
+                            movimientos3.setDescripcion(auxiliar.getDescripcion());
+                            movimientos3.setTipo(auxiliar.getTipo());
+                            auxiliar2.add(movimientos3);
+                            cuenta.setMovimientos(auxiliar2);
+                            
+                    }
 
                     }
 
                 }
-
-          }
         
          for(Movimiento m : movimientos){
              
