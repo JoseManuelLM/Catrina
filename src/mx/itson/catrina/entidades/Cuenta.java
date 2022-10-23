@@ -22,6 +22,8 @@ public class Cuenta {
     private Cliente cliente;
     private List<Movimiento> movimientos;
     private List<Movimiento> movimientosOp;
+    private List<Movimiento> auxiliar01;
+    private List<Movimiento> auxiliar02;
     
     /**
      * Sirve para transformar un archivo json a objetos de java
@@ -100,6 +102,22 @@ public class Cuenta {
 
     public void setMovimientosOp(List<Movimiento> movimientosOp) {
         this.movimientosOp = movimientosOp;
+    }
+
+    public List<Movimiento> getAuxiliar01() {
+        return auxiliar01;
+    }
+
+    public void setAuxiliar01(List<Movimiento> auxiliar01) {
+        this.auxiliar01 = auxiliar01;
+    }
+
+    public List<Movimiento> getAuxiliar02() {
+        return auxiliar02;
+    }
+
+    public void setAuxiliar02(List<Movimiento> auxiliar02) {
+        this.auxiliar02 = auxiliar02;
     }
     
 }

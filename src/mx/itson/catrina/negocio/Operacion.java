@@ -33,14 +33,57 @@ public class Operacion {
         
         DateFormat formato = new SimpleDateFormat("MM");
         DateFormat formato2 = new SimpleDateFormat("dd/MM/yy");
-        DateFormat formato3 = new SimpleDateFormat("dd");
+        DateFormat formato3 = new SimpleDateFormat("d");
         
         //List<Movimiento> movimientosMes = null;
         Cuenta cuenta = new Cuenta();
+        Movimiento movimientos1 = new Movimiento();
+        Movimiento movimientos2 = new Movimiento();
+        Movimiento movimientos3 = new Movimiento();
         //List<Ingrediente> ingredientes = new ArrayList<>();
         List<Movimiento> movimientosMes = new ArrayList<>();
+        List<Movimiento> auxiliar = new ArrayList<>();
+        List<Movimiento> auxiliar1 = new ArrayList<>();
+        List<Movimiento> auxiliar2 = new ArrayList<>();
         
-        
+        for(Movimiento m : movimientos){//i
+
+                for(Movimiento m1 : movimientos){//j
+
+                    if(Integer.parseInt(formato3.format(m.getFecha())) < Integer.parseInt(formato3.format(m1.getFecha())) ){//if(num[i] < num[j])
+
+                        // ingrediente1.setNombre("1 Taza de Lentejas previamente remojadas por 3 horas y escurridas");
+                        //ingredientes.add(ingrediente1);
+                        //receta.setIngredientes(ingredientes);
+                        //aux = num[i];
+                        //num[i] = num[j];
+                       // num[j] = aux;
+                       
+                       
+                       
+                       movimientos1.setFecha(m.getFecha());
+                       movimientos1.setCantidad(m.getCantidad());
+                       movimientos1.setDescripcion(m.getDescripcion());
+                       auxiliar.add(movimientos1);
+                       cuenta.setAuxiliar01(auxiliar);
+                       
+                       movimientos2.setFecha(m1.getFecha());
+                       movimientos2.setCantidad(m1.getCantidad());
+                       movimientos2.setDescripcion(m1.getDescripcion());
+                       auxiliar1.add(movimientos2);
+                       cuenta.setAuxiliar02(auxiliar1);
+                       
+                       movimientos3.setFecha(m.getFecha());
+                       movimientos3.setCantidad(m.getCantidad());
+                       movimientos3.setDescripcion(m.getDescripcion());
+                       auxiliar2.add(movimientos3);
+                       cuenta.setMovimientos(auxiliar2);
+
+                    }
+
+                }
+
+          }
         
          for(Movimiento m : movimientos){
              

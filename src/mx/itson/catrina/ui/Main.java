@@ -176,7 +176,7 @@ public class Main extends javax.swing.JFrame {
         jTextField4.setBackground(new java.awt.Color(255, 153, 0));
         jTextField4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField4.setText("S:ALDO FINAL DEL PERIODO:");
+        jTextField4.setText("SALDO FINAL DEL PERIODO:");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -351,7 +351,21 @@ public class Main extends javax.swing.JFrame {
             
             if(key >= 1){
 
-
+                    DefaultTableModel modelo = (DefaultTableModel) tblResumenPeriodo.getModel();
+                    modelo.setRowCount(0);
+                    DefaultTableModel modelo2 = (DefaultTableModel) tblMovimientos.getModel();
+                    modelo2.setRowCount(0);
+                    
+                mes = cboMes.getSelectedItem().toString();
+                
+                operacion.obtenerMovimientos(mes, cuenta.getMovimientos());
+                
+                //System.out.println("Hola");
+                
+                 modelo.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%37s", cuenta.getMoneda())});
+                 modelo.addRow(new Object[] {"Depósitos", String.format("$%37s", cuenta.getMoneda())});
+                 modelo.addRow(new Object[] {"Retiros", String.format("$%37s", cuenta.getMoneda())});
+                 modelo.addRow(new Object[] {"Saldo final", String.format("$%37s", cuenta.getMoneda())});
 
             }else{
 
