@@ -5,12 +5,12 @@
 package mx.itson.catrina.ui;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import mx.itson.catrina.entidades.Cuenta;
 import mx.itson.catrina.entidades.Movimiento;
 import mx.itson.catrina.negocio.Operacion;
@@ -128,6 +128,7 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblCuenta);
 
+        jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(255, 153, 0));
         jTextField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextField1.setText("RESUMEN DEL PERIODO");
@@ -149,6 +150,7 @@ public class Main extends javax.swing.JFrame {
             tblResumenPeriodo.getColumnModel().getColumn(0).setPreferredWidth(200);
         }
 
+        jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(255, 153, 0));
         jTextField3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTextField3.setText("DETALLE DE MOVIMIENTOS");
@@ -170,6 +172,7 @@ public class Main extends javax.swing.JFrame {
             tblMovimientos.getColumnModel().getColumn(1).setPreferredWidth(300);
         }
 
+        jTextField4.setEditable(false);
         jTextField4.setBackground(new java.awt.Color(255, 153, 0));
         jTextField4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -180,6 +183,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jTextField5.setEditable(false);
         jTextField5.setBackground(new java.awt.Color(255, 153, 0));
         jTextField5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
@@ -289,6 +293,15 @@ public class Main extends javax.swing.JFrame {
                 byte archivoBytes[] = Files.readAllBytes(archivo.toPath());
                 String contenido = new String(archivoBytes, StandardCharsets.UTF_8);
                 
+                    DefaultTableModel modelo = (DefaultTableModel) tblDatosCliente.getModel();
+                    modelo.setRowCount(0);
+                    DefaultTableModel modelo1 = (DefaultTableModel) tblCuenta.getModel();
+                    modelo1.setRowCount(0);
+                    DefaultTableModel modelo2 = (DefaultTableModel) tblResumenPeriodo.getModel();
+                    modelo2.setRowCount(0);
+                    DefaultTableModel modelo3 = (DefaultTableModel) tblMovimientos.getModel();
+                    modelo3.setRowCount(0);
+                
                 cuenta = new Cuenta().deserializar(contenido);
                 
                 mes = cboMes.getSelectedItem().toString();
@@ -298,6 +311,19 @@ public class Main extends javax.swing.JFrame {
                 //System.out.println("Hola");
                 
                 txtArchivo.setText(archivo.toString());
+                txtNombre.setText(cuenta.getCliente().getNombre());
+                 modelo.addRow(new Object[] {"RFC: " + cuenta.getCliente().getRfc()});
+                 modelo.addRow(new Object[] {cuenta.getCliente().getDomicilio()});
+                 modelo.addRow(new Object[] {cuenta.getCliente().getCiudad()});
+                 modelo.addRow(new Object[] {"C.P. " + cuenta.getCliente().getCp()});
+                 txtTipoCuenta.setText(cuenta.getProducto());
+                 modelo1.addRow(new Object[] {"CUENTA", String.format("%28s", cuenta.getCuenta())}); //28
+                 modelo1.addRow(new Object[] {"CLABE", String.format("%18s", cuenta.getClabe())});
+                 modelo1.addRow(new Object[] {"MONEDA", String.format("%37s", cuenta.getMoneda())});
+                 modelo2.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%37s", cuenta.getMoneda())});
+                 modelo2.addRow(new Object[] {"Depósitos", String.format("$%37s", cuenta.getMoneda())});
+                 modelo2.addRow(new Object[] {"Retiros", String.format("$%37s", cuenta.getMoneda())});
+                 modelo2.addRow(new Object[] {"Saldo final", String.format("$%37s", cuenta.getMoneda())});
                 
             }
             

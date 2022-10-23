@@ -28,7 +28,6 @@ public class Operacion {
     int totalSeptiembre = 0;
     int totalOctubre = 0;
     int totalNoviembre = 0;
-    int totalDiciembre = 0;
     
     public void obtenerMovimientos (String mes, List<Movimiento> movimientos){
         
@@ -212,21 +211,6 @@ public class Operacion {
                     
                 }
 
-                case "12" -> {
-
-switch(m.getTipo()){
-                           
-                           case DEPÓSITO -> totalDiciembre += m.getCantidad();
-                          
-                           case RETIRO -> totalDiciembre -= m.getCantidad();
-                               
-                           default -> {
-                     }
-                           
-                       }
-                    
-                }
-
                     default -> {
                 }
 
@@ -335,8 +319,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero  + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -353,8 +337,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -399,8 +383,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -417,8 +401,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -463,8 +447,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -481,8 +465,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -527,8 +511,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -545,8 +529,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -591,8 +575,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -609,8 +593,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -655,8 +639,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -673,8 +657,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -719,8 +703,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -737,8 +721,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -783,8 +767,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -801,8 +785,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -847,8 +831,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -865,8 +849,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -911,8 +895,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -929,8 +913,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
@@ -975,8 +959,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getDeposito());
-                                    totalParcial = movimientosOperacion.getDeposito();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre + totalNoviembre + movimientosOperacion.getDeposito());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre + totalNoviembre + movimientosOperacion.getDeposito();
                                     
                                 }else{
                                     
@@ -993,8 +977,8 @@ switch(m.getTipo()){
                                 
                                 if(posicion == 0){
                                     
-                                    movimientosOperacion.setSubtotal(movimientosOperacion.getRetiro());
-                                    totalParcial = movimientosOperacion.getRetiro();
+                                    movimientosOperacion.setSubtotal(totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre + totalNoviembre - movimientosOperacion.getRetiro());
+                                    totalParcial = totalEnero + totalFebrero + totalMarzo + totalAbril + totalMayo + totalJunio + totalJulio + totalAgosto + totalSeptiembre + totalOctubre + totalNoviembre - movimientosOperacion.getRetiro();
                                     
                                 }else{
                                     
