@@ -10,6 +10,8 @@ import java.nio.file.Files;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.catrina.entidades.Cuenta;
 import mx.itson.catrina.entidades.Movimiento;
@@ -25,6 +27,7 @@ public class Main extends javax.swing.JFrame {
     Operacion operacion = new Operacion();
     String mes;
     int key = 0;
+    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
     
     /**
      * Creates new form Main
@@ -330,9 +333,10 @@ public class Main extends javax.swing.JFrame {
                  modelo.addRow(new Object[] {cuenta.getCliente().getCiudad()});
                  modelo.addRow(new Object[] {"C.P. " + cuenta.getCliente().getCp()});
                  txtTipoCuenta.setText(cuenta.getProducto());
+                 
                  modelo1.addRow(new Object[] {"CUENTA", String.format("%28s", cuenta.getCuenta())}); //28
-                 modelo1.addRow(new Object[] {"CLABE", String.format("%18s", cuenta.getClabe())});
-                 modelo1.addRow(new Object[] {"MONEDA", String.format("%37s", cuenta.getMoneda())});
+                 modelo1.addRow(new Object[] {"CLABE", String.format("%21s", cuenta.getClabe())});
+                 modelo1.addRow(new Object[] {"MONEDA", String.format("%34s", cuenta.getMoneda())});
                  
                   for(Movimiento m : mov){
                 
@@ -342,22 +346,32 @@ public class Main extends javax.swing.JFrame {
                 
                 }
                  
-                 modelo2.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%39.2f", saldoAnterior)});
-                 modelo2.addRow(new Object[] {"Depósitos", String.format("$%39.2f", depositos)});
-                 modelo2.addRow(new Object[] {"Retiros", String.format("$%39.2f", retiros)});
-                 modelo2.addRow(new Object[] {"Saldo final", String.format("$%39.2f", saldoFinal)});//31839.30
+                 modelo2.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,37.2f", saldoAnterior)});
+                 modelo2.addRow(new Object[] {"Depósitos", String.format("$%,37.2f", depositos)});
+                 modelo2.addRow(new Object[] {"Retiros", String.format("$%,37.2f", retiros)});
+                 modelo2.addRow(new Object[] {"Saldo final", String.format("$%,37.2f", saldoFinal)});//31839.30
                  
                  for(Movimiento m : mov){
                     
+                     if(m.getDeposito() == 0){
+                         
+                         modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("%43s", "-"), String.format("$%,35.2f", m.getRetiro()), String.format("$%,35.2f", m.getSubtotal())});
+                         
+                     }
                      
+                     if(m.getRetiro() == 0){
+                         
+                         modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%,35.2f", m.getDeposito()), String.format("%43s", "-"), String.format("$%,35.2f", m.getSubtotal())});
+                         
+                     }
                      
-                    modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%35.2f", m.getDeposito()), String.format("$%35.2f", m.getRetiro()), String.format("$%35.2f", m.getSubtotal())});
+                    
                      
                  }
                  
                  
                  
-                txtSaldoFinal.setText( String.format("%35.2f", saldoFinal));
+                txtSaldoFinal.setText( String.format("%,35.2f", saldoFinal));
                 
             }
             
@@ -412,18 +426,27 @@ public class Main extends javax.swing.JFrame {
                 
                 }
                  
-                 modelo.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%39.2f", saldoAnterior)});
-                 modelo.addRow(new Object[] {"Depósitos", String.format("$%39.2f", depositos)});
-                 modelo.addRow(new Object[] {"Retiros", String.format("$%39.2f", retiros)});
-                 modelo.addRow(new Object[] {"Saldo final", String.format("$%39.2f", saldoFinal)});//31839.30
+                 modelo.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,37.2f", saldoAnterior)});
+                 modelo.addRow(new Object[] {"Depósitos", String.format("$%,37.2f", depositos)});
+                 modelo.addRow(new Object[] {"Retiros", String.format("$%,37.2f", retiros)});
+                 modelo.addRow(new Object[] {"Saldo final", String.format("$%,37.2f", saldoFinal)});//31839.30
                  
                  for(Movimiento m : mov){
                      
-                    modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%35.2f", m.getDeposito()), String.format("$%35.2f", m.getRetiro()), String.format("$%35.2f", m.getSubtotal())});
+                      if(m.getDeposito() == 0){
+                         
+                         modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("%43s", "-"), String.format("$%,35.2f", m.getRetiro()), String.format("$%,35.2f", m.getSubtotal())});
+                         
+                     }
                      
+                     if(m.getRetiro() == 0){
+                         
+                         modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%,35.2f", m.getDeposito()), String.format("%43s", "-"), String.format("$%,35.2f", m.getSubtotal())});
+                         
+                     }
                  }
                  
-                  txtSaldoFinal.setText(String.format("%35.2f", saldoFinal));
+                  txtSaldoFinal.setText(String.format("%,35.2f", saldoFinal));
 
             }else{
 
@@ -510,4 +533,5 @@ public class Main extends javax.swing.JFrame {
     private float[] obtenerMovimientos(String mes, List<Movimiento> movimientos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
 }
