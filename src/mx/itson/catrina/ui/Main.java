@@ -4,13 +4,13 @@
  */
 package mx.itson.catrina.ui;
 
+import java.awt.Toolkit;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.catrina.entidades.Cuenta;
 import mx.itson.catrina.entidades.Movimiento;
@@ -26,13 +26,15 @@ public class Main extends javax.swing.JFrame {
     Operacion operacion = new Operacion();
     String mes;
     int key = 0;
-    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+    //DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
     
     /**
      * Creates new form Main
      */
     public Main() {
+        
         initComponents();
+        
     }
 
     /**
@@ -69,6 +71,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Catrina");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("expediente.png")));
         setResizable(false);
 
         jLabel1.setText("Seleccione el mes:");
@@ -531,7 +534,7 @@ public class Main extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -564,9 +567,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField txtSaldoFinal;
     private javax.swing.JTextField txtTipoCuenta;
     // End of variables declaration//GEN-END:variables
+    
+        /*@Override
+        public Image getIconImage() {
 
-    private float[] obtenerMovimientos(String mes, List<Movimiento> movimientos) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+            Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("mx.itson.catrina.imagenes/expediente.png"));
+            
+            return retValue;
+
+        }*/
     
 }

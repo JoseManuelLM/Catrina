@@ -1103,6 +1103,13 @@ public class Operacion {
         
     }
     
+    /**
+     *  Aqui se calcula el saldo anterior al mes solicitado
+     * @param mes Se recibe el mes con el que se van a hacer calculos
+     * @param movimientos se recibe el ArrayList para los calculos
+     * @return El saldo anterior al mes solicitado
+     */
+
     public float obtenerSaldoInicial (String mes, List<Movimiento> movimientos){
         
         float saldoInicial = 0;
