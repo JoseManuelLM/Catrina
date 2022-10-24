@@ -117,8 +117,19 @@ public class Main extends javax.swing.JFrame {
             new String [] {
                 ""
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblDatosCliente);
+        if (tblDatosCliente.getColumnModel().getColumnCount() > 0) {
+            tblDatosCliente.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         tblCuenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,8 +140,20 @@ public class Main extends javax.swing.JFrame {
             new String [] {
                 "", ""
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblCuenta);
+        if (tblCuenta.getColumnModel().getColumnCount() > 0) {
+            tblCuenta.getColumnModel().getColumn(0).setResizable(false);
+            tblCuenta.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(255, 153, 0));
@@ -151,7 +174,9 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblResumenPeriodo);
         if (tblResumenPeriodo.getColumnModel().getColumnCount() > 0) {
+            tblResumenPeriodo.getColumnModel().getColumn(0).setResizable(false);
             tblResumenPeriodo.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tblResumenPeriodo.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jTextField3.setEditable(false);
@@ -169,11 +194,23 @@ public class Main extends javax.swing.JFrame {
             new String [] {
                 "FECHA", "DESCRIPCIÓN", "DEPÓSITO", "RETIRO", "SUBTOTAL"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(tblMovimientos);
         if (tblMovimientos.getColumnModel().getColumnCount() > 0) {
+            tblMovimientos.getColumnModel().getColumn(0).setResizable(false);
             tblMovimientos.getColumnModel().getColumn(0).setPreferredWidth(35);
+            tblMovimientos.getColumnModel().getColumn(1).setResizable(false);
             tblMovimientos.getColumnModel().getColumn(1).setPreferredWidth(300);
+            tblMovimientos.getColumnModel().getColumn(2).setResizable(false);
+            tblMovimientos.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jTextField4.setEditable(false);
