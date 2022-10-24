@@ -109,6 +109,7 @@ public class Main extends javax.swing.JFrame {
         txtTipoCuenta.setBackground(new java.awt.Color(255, 153, 0));
         txtTipoCuenta.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
+        tblDatosCliente.setBackground(new java.awt.Color(204, 204, 204));
         tblDatosCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -128,11 +129,13 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblDatosCliente.setShowGrid(true);
         jScrollPane1.setViewportView(tblDatosCliente);
         if (tblDatosCliente.getColumnModel().getColumnCount() > 0) {
             tblDatosCliente.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        tblCuenta.setBackground(new java.awt.Color(204, 204, 204));
         tblCuenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -151,6 +154,7 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblCuenta.setShowGrid(true);
         jScrollPane2.setViewportView(tblCuenta);
         if (tblCuenta.getColumnModel().getColumnCount() > 0) {
             tblCuenta.getColumnModel().getColumn(0).setResizable(false);
@@ -163,6 +167,7 @@ public class Main extends javax.swing.JFrame {
         jTextField1.setText("RESUMEN DEL PERIODO");
         jTextField1.setToolTipText("");
 
+        tblResumenPeriodo.setBackground(new java.awt.Color(204, 204, 204));
         tblResumenPeriodo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -174,6 +179,8 @@ public class Main extends javax.swing.JFrame {
                 "", ""
             }
         ));
+        tblResumenPeriodo.setName(""); // NOI18N
+        tblResumenPeriodo.setShowGrid(true);
         jScrollPane3.setViewportView(tblResumenPeriodo);
         if (tblResumenPeriodo.getColumnModel().getColumnCount() > 0) {
             tblResumenPeriodo.getColumnModel().getColumn(0).setResizable(false);
@@ -186,12 +193,10 @@ public class Main extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTextField3.setText("DETALLE DE MOVIMIENTOS");
 
+        tblMovimientos.setBackground(new java.awt.Color(204, 204, 204));
         tblMovimientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "FECHA", "DESCRIPCIÓN", "DEPÓSITO", "RETIRO", "SUBTOTAL"
@@ -205,6 +210,7 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblMovimientos.setShowGrid(true);
         jScrollPane4.setViewportView(tblMovimientos);
         if (tblMovimientos.getColumnModel().getColumnCount() > 0) {
             tblMovimientos.getColumnModel().getColumn(0).setResizable(false);
