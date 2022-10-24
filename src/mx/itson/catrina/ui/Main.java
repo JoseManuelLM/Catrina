@@ -10,7 +10,6 @@ import java.nio.file.Files;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.catrina.entidades.Cuenta;
@@ -402,8 +401,6 @@ public class Main extends javax.swing.JFrame {
                          
                      }
                      
-                    
-                     
                  }
                  
                  
@@ -451,7 +448,7 @@ public class Main extends javax.swing.JFrame {
                 List<Movimiento> mov = operacion.obtenerMovimientos(mes, cuenta.getMovimientos()/*, cuenta.getAuxiliar03()*/);
                 float saldoAnterior = operacion.obtenerSaldoInicial(mes, cuenta.getMovimientos());
                 
-                Cuenta mov2 = new Cuenta();
+                //Cuenta mov2 = new Cuenta();
                 
                 //System.out.println("Hola");
                 
@@ -481,6 +478,7 @@ public class Main extends javax.swing.JFrame {
                          modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%,35.2f", m.getDeposito()), String.format("%43s", "-"), String.format("$%,35.2f", m.getSubtotal())});
                          
                      }
+                     
                  }
                  
                   txtSaldoFinal.setText(String.format("%,35.2f", saldoFinal));
