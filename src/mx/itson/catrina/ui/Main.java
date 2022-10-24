@@ -79,7 +79,9 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setText("Seleccione el archivo a cargar:");
 
         txtArchivo.setEditable(false);
+        txtArchivo.setBackground(new java.awt.Color(204, 204, 204));
 
+        cboMes.setBackground(new java.awt.Color(204, 204, 204));
         cboMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cboMes.setToolTipText("");
         cboMes.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +90,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btnSeleccione.setBackground(new java.awt.Color(153, 153, 153));
         btnSeleccione.setText("Seleccione...");
         btnSeleccione.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,6 +239,7 @@ public class Main extends javax.swing.JFrame {
         txtSaldoFinal.setBackground(new java.awt.Color(255, 153, 0));
         txtSaldoFinal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
+        btnCargarMes.setBackground(new java.awt.Color(153, 153, 153));
         btnCargarMes.setText("Cargar mes");
         btnCargarMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
