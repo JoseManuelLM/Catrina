@@ -103,7 +103,7 @@ public class Movimiento implements Comparable<Movimiento> {
      */
     public int compareTo(Movimiento o) {
         
-        DateFormat formato3 = new SimpleDateFormat("dd");
+        DateFormat formato3 = new SimpleDateFormat("dd/MM/yyyy");
          
         String a = formato3.format(this.getFecha());
         String b = formato3.format(o.getFecha());

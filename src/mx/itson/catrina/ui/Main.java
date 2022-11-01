@@ -25,7 +25,6 @@ public class Main extends javax.swing.JFrame {
     Cuenta cuenta;
     Operacion operacion = new Operacion();
     String mes;
-    int key = 0;
     //DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
     
     /**
@@ -66,7 +65,6 @@ public class Main extends javax.swing.JFrame {
         tblMovimientos = new javax.swing.JTable();
         jTextField4 = new javax.swing.JTextField();
         txtSaldoFinal = new javax.swing.JTextField();
-        btnCargarMes = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +82,13 @@ public class Main extends javax.swing.JFrame {
         cboMes.setBackground(new java.awt.Color(204, 204, 204));
         cboMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cboMes.setToolTipText("");
+        cboMes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cboMes.setEnabled(false);
+        cboMes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboMesItemStateChanged(evt);
+            }
+        });
         cboMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboMesActionPerformed(evt);
@@ -239,14 +244,6 @@ public class Main extends javax.swing.JFrame {
         txtSaldoFinal.setBackground(new java.awt.Color(255, 153, 0));
         txtSaldoFinal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        btnCargarMes.setBackground(new java.awt.Color(153, 153, 153));
-        btnCargarMes.setText("Cargar mes");
-        btnCargarMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarMesActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setText("$");
 
@@ -280,11 +277,8 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnCargarMes)))
-                                .addGap(78, 78, 78)
+                                    .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(177, 177, 177)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,8 +300,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSeleccione)
-                    .addComponent(btnCargarMes))
+                    .addComponent(btnSeleccione))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -346,7 +339,7 @@ public class Main extends javax.swing.JFrame {
             
             if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
                 
-                key++;
+                cboMes.setEnabled(true);
                 
                 File archivo = fileChooser.getSelectedFile();
                 byte archivoBytes[] = Files.readAllBytes(archivo.toPath());
@@ -422,12 +415,6 @@ public class Main extends javax.swing.JFrame {
                 
             }
             
-            if(key > 1){
-                
-                key--;
-                
-            }
-            
         }catch(NullPointerException e){
             
             JOptionPane.showMessageDialog(null, "Tienes que cargar un archivo json, o un archivo json con el formato adecuado", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -440,11 +427,15 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnSeleccioneActionPerformed
 
-    private void btnCargarMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarMesActionPerformed
-       
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void cboMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMesActionPerformed
+    }//GEN-LAST:event_cboMesActionPerformed
+
+    private void cboMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboMesItemStateChanged
+
         try{
-            
-            if(key >= 1){
 
                     DefaultTableModel modelo = (DefaultTableModel) tblResumenPeriodo.getModel();
                     modelo.setRowCount(0);
@@ -495,12 +486,6 @@ public class Main extends javax.swing.JFrame {
                  }
                  
                   txtSaldoFinal.setText(String.format("%,35.2f", saldoFinal));
-
-            }else{
-
-                JOptionPane.showMessageDialog(null, "Tienes que cargar primero un archivo", "ERROR", JOptionPane.ERROR_MESSAGE);
-
-            }
             
         }catch(Exception ex){
             
@@ -508,15 +493,7 @@ public class Main extends javax.swing.JFrame {
             
         }
         
-    }//GEN-LAST:event_btnCargarMesActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void cboMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMesActionPerformed
+    }//GEN-LAST:event_cboMesItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -554,7 +531,6 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCargarMes;
     private javax.swing.JButton btnSeleccione;
     private javax.swing.JComboBox<String> cboMes;
     private javax.swing.JLabel jLabel1;
