@@ -66,6 +66,7 @@ public class Main extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         txtSaldoFinal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Catrina");
@@ -201,6 +202,11 @@ public class Main extends javax.swing.JFrame {
         jTextField3.setBackground(new java.awt.Color(255, 153, 0));
         jTextField3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTextField3.setText("DETALLE DE MOVIMIENTOS");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         tblMovimientos.setBackground(new java.awt.Color(204, 204, 204));
         tblMovimientos.setModel(new javax.swing.table.DefaultTableModel(
@@ -255,16 +261,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField1)
                     .addComponent(jTextField2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTipoCuenta)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)))
                     .addComponent(jTextField3)
                     .addComponent(jScrollPane4)
                     .addGroup(layout.createSequentialGroup()
@@ -275,17 +274,24 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(txtSaldoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTipoCuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                        .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSeleccione))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(177, 177, 177)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnSeleccione))
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel1)
+                                .addGap(334, 334, 334)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -294,29 +300,33 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSeleccione)
                     .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSeleccione))
+                    .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTipoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtTipoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,7 +335,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSaldoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -377,9 +387,9 @@ public class Main extends javax.swing.JFrame {
                  modelo.addRow(new Object[] {"C.P. " + cuenta.getCliente().getCp()});
                  txtTipoCuenta.setText(cuenta.getProducto());
                  
-                 modelo1.addRow(new Object[] {"CUENTA", String.format("%28s", cuenta.getCuenta())}); //28
-                 modelo1.addRow(new Object[] {"CLABE", String.format("%21s", cuenta.getClabe())});
-                 modelo1.addRow(new Object[] {"MONEDA", String.format("%34s", cuenta.getMoneda())});
+                 modelo1.addRow(new Object[] {"CUENTA", String.format("%25s", cuenta.getCuenta())}); //28
+                 modelo1.addRow(new Object[] {"CLABE", String.format("%16s", cuenta.getClabe())});
+                 modelo1.addRow(new Object[] {"MONEDA", String.format("%32s", cuenta.getMoneda())});
                  
                   for(Movimiento m : mov){
                 
@@ -389,22 +399,22 @@ public class Main extends javax.swing.JFrame {
                 
                 }
                  
-                 modelo2.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,37.2f", saldoAnterior)});
-                 modelo2.addRow(new Object[] {"Depósitos", String.format("$%,37.2f", depositos)});
-                 modelo2.addRow(new Object[] {"Retiros", String.format("$%,37.2f", retiros)});
-                 modelo2.addRow(new Object[] {"Saldo final", String.format("$%,37.2f", saldoFinal)});//31839.30
+                 modelo2.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,34.2f", saldoAnterior)});
+                 modelo2.addRow(new Object[] {"Depósitos", String.format("$%,34.2f", depositos)});
+                 modelo2.addRow(new Object[] {"Retiros", String.format("$%,34.2f", retiros)});
+                 modelo2.addRow(new Object[] {"Saldo final", String.format("$%,34.2f", saldoFinal)});//31839.30
                  
                  for(Movimiento m : mov){
                     
                      if(m.getDeposito() == 0){
                          
-                         modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("%43s", "-"), String.format("$%,35.2f", m.getRetiro()), String.format("$%,35.2f", m.getSubtotal())});
+                         modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("%40s", "-"), String.format("$%,31.2f", m.getRetiro()), String.format("$%,31.2f", m.getSubtotal())});
                          
                      }
                      
                      if(m.getRetiro() == 0){
                          
-                         modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%,35.2f", m.getDeposito()), String.format("%43s", "-"), String.format("$%,35.2f", m.getSubtotal())});
+                         modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%,31.2f", m.getDeposito()), String.format("%40s", "-"), String.format("$%,31.2f", m.getSubtotal())});
                          
                      }
                      
@@ -465,22 +475,22 @@ public class Main extends javax.swing.JFrame {
                 
                 }
                  
-                 modelo.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,37.2f", saldoAnterior)});
-                 modelo.addRow(new Object[] {"Depósitos", String.format("$%,37.2f", depositos)});
-                 modelo.addRow(new Object[] {"Retiros", String.format("$%,37.2f", retiros)});
-                 modelo.addRow(new Object[] {"Saldo final", String.format("$%,37.2f", saldoFinal)});//31839.30
+                 modelo.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,34.2f", saldoAnterior)});
+                 modelo.addRow(new Object[] {"Depósitos", String.format("$%,34.2f", depositos)});
+                 modelo.addRow(new Object[] {"Retiros", String.format("$%,34.2f", retiros)});
+                 modelo.addRow(new Object[] {"Saldo final", String.format("$%,34.2f", saldoFinal)});//31839.30
                  
                  for(Movimiento m : mov){
                      
                       if(m.getDeposito() == 0){
                          
-                         modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("%43s", "-"), String.format("$%,35.2f", m.getRetiro()), String.format("$%,35.2f", m.getSubtotal())});
+                         modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("%40s", "-"), String.format("$%,31.2f", m.getRetiro()), String.format("$%,31.2f", m.getSubtotal())});
                          
                      }
                      
                      if(m.getRetiro() == 0){
                          
-                         modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%,35.2f", m.getDeposito()), String.format("%43s", "-"), String.format("$%,35.2f", m.getSubtotal())});
+                        modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%,31.2f", m.getDeposito()), String.format("%40s", "-"), String.format("$%,31.2f", m.getSubtotal())});
                          
                      }
                      
@@ -495,6 +505,10 @@ public class Main extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_cboMesItemStateChanged
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -537,6 +551,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
