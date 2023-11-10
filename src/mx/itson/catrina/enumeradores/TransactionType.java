@@ -7,10 +7,13 @@ package mx.itson.catrina.enumeradores;
 import com.google.gson.annotations.SerializedName;
 
 /**
- *  Aqui se inicializan las variables enumeradoras
- * @author shiri
+ * Define los tipos de transacciones posibles, que pueden ser DEPÓSITO o RETIRO.
+ * Cada tipo de transacción tiene un valor asociado que se utiliza para la serialización/deserialización con Gson.
+ * 
+ * @author José Manuel Leyva Munguía
+ * @version v1.0
  */
-public enum TipoMovimiento {
+public enum TransactionType {
     
     @SerializedName("1")
     DEPÓSITO,

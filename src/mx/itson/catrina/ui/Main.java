@@ -4,6 +4,8 @@
  */
 package mx.itson.catrina.ui;
 
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -11,30 +13,74 @@ import java.nio.file.Files;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import mx.itson.catrina.entidades.Cuenta;
-import mx.itson.catrina.entidades.Movimiento;
-import mx.itson.catrina.negocio.Operacion;
+import mx.itson.catrina.entidades.Account;
+import mx.itson.catrina.entidades.Transaction;
+import mx.itson.catrina.negocio.Operation;
 
 /**
- *
- * @author shiri
+ * Contiene los métodos que brindan funcionamiento a la interfaz gráfica.
+ * @author José Manuel Leyva Munguía
+ * @version v1.0
  */
 public class Main extends javax.swing.JFrame {
 
-    Cuenta cuenta;
-    Operacion operacion = new Operacion();
-    String mes;
-    //DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+    Account account;
+    Operation operation = new Operation();
+    String month;
     
-    /**
-     * Creates new form Main
-     */
     public Main() {
         
         initComponents();
-        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("banco.jpg")));
-        lblEscudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("sonora.png")));
+        
+        // Asigna un renderizador personalizado a la primera columna de la tabla tblCustomerInfo.
+        tblCustomerInfo.getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
+            
+            // Sobrescribe el método de la clase DefaultTableCellRenderer para personalizar el renderizado.
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                
+                // Llama al método original de la clase padre para obtener el componente de la celda.
+                Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                
+                // Verifica si la columna es la primera (columna == 0).
+                if (column == 0) {
+                    // Si es la primera columna, establece el tipo de fuente del texto como negrita.
+                    cellComponent.setFont(cellComponent.getFont().deriveFont(Font.BOLD));
+                }
+                // Retorna el componente de la celda modificado.
+                return cellComponent;
+            }
+        });
+        
+        // Se repiten las mismas instrucciones para las tablas tblAccount y tblPeriodSummary
+        tblAccount.getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                if (column == 0) {
+                    cellComponent.setFont(cellComponent.getFont().deriveFont(Font.BOLD));
+                }
+
+                return cellComponent;
+            }
+        });
+    
+        tblPeriodSummary.getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                if (column == 0) {
+                    cellComponent.setFont(cellComponent.getFont().deriveFont(Font.BOLD));
+                }
+
+                return cellComponent;
+            }
+        });
         
     }
 
@@ -49,54 +95,48 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtArchivo = new javax.swing.JTextField();
-        cboMes = new javax.swing.JComboBox<>();
+        txfFile = new javax.swing.JTextField();
+        cbxMonth = new javax.swing.JComboBox<>();
         btnSeleccione = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtTipoCuenta = new javax.swing.JTextField();
+        txfCustomerName = new javax.swing.JTextField();
+        txtCustomerId = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDatosCliente = new javax.swing.JTable();
+        tblCustomerInfo = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblCuenta = new javax.swing.JTable();
+        tblAccount = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblResumenPeriodo = new javax.swing.JTable();
+        tblPeriodSummary = new javax.swing.JTable();
         jTextField3 = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tblMovimientos = new javax.swing.JTable();
+        tblTransactions = new javax.swing.JTable();
         jTextField4 = new javax.swing.JTextField();
-        txtSaldoFinal = new javax.swing.JTextField();
+        txfFinalBalance = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         lblImagen = new javax.swing.JLabel();
-        lblEscudo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Estado de cuenta");
         setBackground(new java.awt.Color(255, 255, 255));
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("IconoCitibanamex.png")));
         setResizable(false);
 
         jLabel1.setText("Seleccione el mes:");
 
         jLabel2.setText("Seleccione el archivo a cargar:");
 
-        txtArchivo.setEditable(false);
-        txtArchivo.setBackground(new java.awt.Color(204, 204, 204));
+        txfFile.setEditable(false);
+        txfFile.setBackground(new java.awt.Color(204, 204, 204));
 
-        cboMes.setBackground(new java.awt.Color(204, 204, 204));
-        cboMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-        cboMes.setToolTipText("Seleccionar mes");
-        cboMes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cboMes.setEnabled(false);
-        cboMes.addItemListener(new java.awt.event.ItemListener() {
+        cbxMonth.setBackground(new java.awt.Color(204, 204, 204));
+        cbxMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cbxMonth.setToolTipText("Seleccionar mes");
+        cbxMonth.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cbxMonth.setEnabled(false);
+        cbxMonth.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboMesItemStateChanged(evt);
-            }
-        });
-        cboMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboMesActionPerformed(evt);
+                cbxMonthItemStateChanged(evt);
             }
         });
 
@@ -110,21 +150,25 @@ public class Main extends javax.swing.JFrame {
         });
 
         jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(0, 0, 204));
-        jTextField2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTextField2.setBackground(new java.awt.Color(255, 204, 0));
+        jTextField2.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 24)); // NOI18N
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.setText("ESTADO DE CUENTA");
+        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        txtNombre.setEditable(false);
-        txtNombre.setBackground(new java.awt.Color(0, 0, 204));
-        txtNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txfCustomerName.setEditable(false);
+        txfCustomerName.setBackground(new java.awt.Color(255, 204, 0));
+        txfCustomerName.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        txfCustomerName.setText("NOMBRE DEL CLIENTE");
+        txfCustomerName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        txtTipoCuenta.setEditable(false);
-        txtTipoCuenta.setBackground(new java.awt.Color(0, 0, 204));
-        txtTipoCuenta.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtCustomerId.setEditable(false);
+        txtCustomerId.setBackground(new java.awt.Color(255, 204, 0));
+        txtCustomerId.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        txtCustomerId.setText("ID DEL CLIENTE");
+        txtCustomerId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        tblDatosCliente.setBackground(new java.awt.Color(204, 204, 204));
-        tblDatosCliente.setModel(new javax.swing.table.DefaultTableModel(
+        tblCustomerInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -143,14 +187,13 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblDatosCliente.setShowGrid(true);
-        jScrollPane1.setViewportView(tblDatosCliente);
-        if (tblDatosCliente.getColumnModel().getColumnCount() > 0) {
-            tblDatosCliente.getColumnModel().getColumn(0).setResizable(false);
+        tblCustomerInfo.setShowGrid(true);
+        jScrollPane1.setViewportView(tblCustomerInfo);
+        if (tblCustomerInfo.getColumnModel().getColumnCount() > 0) {
+            tblCustomerInfo.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        tblCuenta.setBackground(new java.awt.Color(204, 204, 204));
-        tblCuenta.setModel(new javax.swing.table.DefaultTableModel(
+        tblAccount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -168,21 +211,21 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblCuenta.setShowGrid(true);
-        jScrollPane2.setViewportView(tblCuenta);
-        if (tblCuenta.getColumnModel().getColumnCount() > 0) {
-            tblCuenta.getColumnModel().getColumn(0).setResizable(false);
-            tblCuenta.getColumnModel().getColumn(1).setResizable(false);
+        tblAccount.setShowGrid(true);
+        jScrollPane2.setViewportView(tblAccount);
+        if (tblAccount.getColumnModel().getColumnCount() > 0) {
+            tblAccount.getColumnModel().getColumn(0).setResizable(false);
+            tblAccount.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(0, 0, 204));
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jTextField1.setBackground(new java.awt.Color(255, 204, 0));
+        jTextField1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
         jTextField1.setText("RESUMEN DEL PERIODO");
         jTextField1.setToolTipText("");
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        tblResumenPeriodo.setBackground(new java.awt.Color(204, 204, 204));
-        tblResumenPeriodo.setModel(new javax.swing.table.DefaultTableModel(
+        tblPeriodSummary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -193,27 +236,22 @@ public class Main extends javax.swing.JFrame {
                 "", ""
             }
         ));
-        tblResumenPeriodo.setName(""); // NOI18N
-        tblResumenPeriodo.setShowGrid(true);
-        jScrollPane3.setViewportView(tblResumenPeriodo);
-        if (tblResumenPeriodo.getColumnModel().getColumnCount() > 0) {
-            tblResumenPeriodo.getColumnModel().getColumn(0).setResizable(false);
-            tblResumenPeriodo.getColumnModel().getColumn(0).setPreferredWidth(200);
-            tblResumenPeriodo.getColumnModel().getColumn(1).setResizable(false);
+        tblPeriodSummary.setName(""); // NOI18N
+        tblPeriodSummary.setShowGrid(true);
+        jScrollPane3.setViewportView(tblPeriodSummary);
+        if (tblPeriodSummary.getColumnModel().getColumnCount() > 0) {
+            tblPeriodSummary.getColumnModel().getColumn(0).setResizable(false);
+            tblPeriodSummary.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tblPeriodSummary.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(0, 0, 204));
-        jTextField3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTextField3.setText("DETALLE DE MOVIMIENTOS");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
+        jTextField3.setBackground(new java.awt.Color(255, 204, 0));
+        jTextField3.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 18)); // NOI18N
+        jTextField3.setText("DETALLE DE MOVIMIENTOS REALIZADOS");
+        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        tblMovimientos.setBackground(new java.awt.Color(204, 204, 204));
-        tblMovimientos.setModel(new javax.swing.table.DefaultTableModel(
+        tblTransactions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -229,34 +267,33 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblMovimientos.setShowGrid(true);
-        jScrollPane4.setViewportView(tblMovimientos);
-        if (tblMovimientos.getColumnModel().getColumnCount() > 0) {
-            tblMovimientos.getColumnModel().getColumn(0).setResizable(false);
-            tblMovimientos.getColumnModel().getColumn(0).setPreferredWidth(35);
-            tblMovimientos.getColumnModel().getColumn(1).setResizable(false);
-            tblMovimientos.getColumnModel().getColumn(1).setPreferredWidth(300);
-            tblMovimientos.getColumnModel().getColumn(2).setResizable(false);
-            tblMovimientos.getColumnModel().getColumn(4).setResizable(false);
+        tblTransactions.setShowGrid(true);
+        jScrollPane4.setViewportView(tblTransactions);
+        if (tblTransactions.getColumnModel().getColumnCount() > 0) {
+            tblTransactions.getColumnModel().getColumn(0).setResizable(false);
+            tblTransactions.getColumnModel().getColumn(0).setPreferredWidth(35);
+            tblTransactions.getColumnModel().getColumn(1).setResizable(false);
+            tblTransactions.getColumnModel().getColumn(1).setPreferredWidth(300);
+            tblTransactions.getColumnModel().getColumn(2).setResizable(false);
+            tblTransactions.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(0, 0, 204));
-        jTextField4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTextField4.setBackground(new java.awt.Color(255, 204, 0));
+        jTextField4.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 15)); // NOI18N
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField4.setText("SALDO FINAL DEL PERIODO:");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
+        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        txtSaldoFinal.setEditable(false);
-        txtSaldoFinal.setBackground(new java.awt.Color(0, 0, 204));
-        txtSaldoFinal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfFinalBalance.setEditable(false);
+        txfFinalBalance.setBackground(new java.awt.Color(255, 204, 0));
+        txfFinalBalance.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 15)); // NOI18N
+        txfFinalBalance.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setText("$");
+
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/itson/catrina/ui/Citibanamex-logo (1).png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,63 +303,68 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSaldoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextField1)
                     .addComponent(jTextField2)
                     .addComponent(jTextField3)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txfCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTipoCuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
-                        .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSeleccione))
+                            .addComponent(txtCustomerId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txfFinalBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbxMonth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(334, 334, 334)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(154, 154, 154)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEscudo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(132, 132, 132))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txfFile, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSeleccione)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(283, 283, 283))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblEscudo, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSeleccione)
-                    .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(cbxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSeleccione))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTipoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,13 +376,13 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSaldoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap())
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfFinalBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -349,171 +391,176 @@ public class Main extends javax.swing.JFrame {
     private void btnSeleccioneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccioneActionPerformed
         
         try{
-           
+            // Crea un cuadro de diálogo para elegir un archivo
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
             
+            // Instrucciones para en caso de que el usuario elija un archivo
             if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
                 
-                cboMes.setEnabled(true);
+                cbxMonth.setEnabled(true);
                 
-                File archivo = fileChooser.getSelectedFile();
-                byte archivoBytes[] = Files.readAllBytes(archivo.toPath());
-                String contenido = new String(archivoBytes, StandardCharsets.UTF_8);
+                // Se obtiene el archivo, se leer el contenido del archivo como un arreglo de bytes y se convierte a una cadena
+                File file = fileChooser.getSelectedFile();
+                byte BytesFile[] = Files.readAllBytes(file.toPath());
+                String content = new String(BytesFile, StandardCharsets.UTF_8);
                 
-                    DefaultTableModel modelo = (DefaultTableModel) tblDatosCliente.getModel();
-                    modelo.setRowCount(0);
-                    DefaultTableModel modelo1 = (DefaultTableModel) tblCuenta.getModel();
-                    modelo1.setRowCount(0);
-                    DefaultTableModel modelo2 = (DefaultTableModel) tblResumenPeriodo.getModel();
-                    modelo2.setRowCount(0);
-                    DefaultTableModel modelo3 = (DefaultTableModel) tblMovimientos.getModel();
-                    modelo3.setRowCount(0);
-                    float depositos = 0;
-                    float retiros = 0;
-                    float saldoFinal = 0;
+                // Limpiar y preparar las tablas para mostrar nueva información
+                DefaultTableModel modelTblCustomerInfo = (DefaultTableModel) tblCustomerInfo.getModel();
+                modelTblCustomerInfo.setRowCount(0);
+                    
+                DefaultTableModel modelTblAccount = (DefaultTableModel) tblAccount.getModel();
+                modelTblAccount.setRowCount(0);
+                    
+                DefaultTableModel modelTblPeriodSummary = (DefaultTableModel) tblPeriodSummary.getModel();
+                modelTblPeriodSummary.setRowCount(0);
+                    
+                DefaultTableModel modelTblTransactions = (DefaultTableModel) tblTransactions.getModel();
+                modelTblTransactions.setRowCount(0);
                 
-                cuenta = new Cuenta().deserializar(contenido);
+                // Variables para almacenar depósitos, retiros y saldo final
+                float deposits = 0;
+                float withdrawals = 0;
+                float finalBalance = 0;
                 
-                mes = cboMes.getSelectedItem().toString();
+                // Deserializa el contenido del archivo al objeto account
+                account = new Account().deserialize(content);
+                // Guarda el mes en la variable month
+                month = cbxMonth.getSelectedItem().toString();
                 
-                List<Movimiento> mov = operacion.obtenerMovimientos(mes, cuenta.getMovimientos()/*, cuenta.getAuxiliar03()*/);
-                float saldoAnterior = operacion.obtenerSaldoInicial(mes, cuenta.getMovimientos());
+                // Obtiene la lista de transacciones para el mes seleccionado
+                List<Transaction> txn = operation.getTransactions(month, account.getTransactions());
+                // Obtiene el saldo inicial para el mes seleccionado
+                float previousBalance = operation.getInitialBalance(month, account.getTransactions());
                 
-                //Cuenta mov2 = new Cuenta();
+                // Actualizar la interfaz gráfica con información relevante
+                txfFile.setText(file.toString());
                 
-                //System.out.println("Hola");
-                
-                txtArchivo.setText(archivo.toString());
-                txtNombre.setText(cuenta.getCliente().getNombre());
-                 modelo.addRow(new Object[] {"RFC: " + cuenta.getCliente().getRfc()});
-                 modelo.addRow(new Object[] {cuenta.getCliente().getDomicilio()});
-                 modelo.addRow(new Object[] {cuenta.getCliente().getCiudad()});
-                 modelo.addRow(new Object[] {"C.P. " + cuenta.getCliente().getCp()});
-                 txtTipoCuenta.setText(cuenta.getProducto());
+                txfCustomerName.setText(account.getCustomer().getName());
+                modelTblCustomerInfo.addRow(new Object[] {"RFC: " + account.getCustomer().getRfc()});
+                modelTblCustomerInfo.addRow(new Object[] {"DIRECCION: " + account.getCustomer().getAddress()});
+                modelTblCustomerInfo.addRow(new Object[] {"CIUDAD: " + account.getCustomer().getCity()});
+                modelTblCustomerInfo.addRow(new Object[] {"C.P: " + account.getCustomer().getZipCode()});
+                txtCustomerId.setText("ID: " + account.getCustomer().getId());
                  
-                 modelo1.addRow(new Object[] {"CUENTA", String.format("%25s", cuenta.getCuenta())}); //28
-                 modelo1.addRow(new Object[] {"CLABE", String.format("%16s", cuenta.getClabe())});
-                 modelo1.addRow(new Object[] {"MONEDA", String.format("%32s", cuenta.getMoneda())});
+                modelTblAccount.addRow(new Object[] {"CUENTA", String.format("%25s", account.getAccount())});
+                modelTblAccount.addRow(new Object[] {"CLABE", String.format("%16s", account.getClabe())});
+                modelTblAccount.addRow(new Object[] {"MONEDA", String.format("%32s", account.getCurrency())});
                  
-                  for(Movimiento m : mov){
+                // Calcula depósitos, retiros y saldo final
+                for(Transaction t : txn){
                 
-                     depositos += m.getDeposito();
-                     retiros += m.getRetiro();
-                     saldoFinal = m.getSubtotal();
+                     deposits += t.getDeposit();
+                     withdrawals += t.getWithdrawal();
+                     finalBalance = t.getSubtotal();
                 
                 }
-                 
-                 modelo2.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,34.2f", saldoAnterior)});
-                 modelo2.addRow(new Object[] {"Depósitos", String.format("$%,34.2f", depositos)});
-                 modelo2.addRow(new Object[] {"Retiros", String.format("$%,34.2f", retiros)});
-                 modelo2.addRow(new Object[] {"Saldo final", String.format("$%,34.2f", saldoFinal)});//31839.30
-                 
-                 for(Movimiento m : mov){
-                    
-                     if(m.getDeposito() == 0){
-                         
-                         modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("%40s", "-"), String.format("$%,31.2f", m.getRetiro()), String.format("$%,31.2f", m.getSubtotal())});
+                 // Actualiza la tabla de resumen del período
+                modelTblPeriodSummary.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,34.2f", previousBalance)});
+                modelTblPeriodSummary.addRow(new Object[] {"Depósitos", String.format("$%,34.2f", deposits)});
+                modelTblPeriodSummary.addRow(new Object[] {"Retiros", String.format("$%,34.2f", withdrawals)});
+                modelTblPeriodSummary.addRow(new Object[] {"Saldo final", String.format("$%,34.2f", finalBalance)});
+                
+                // Actualiza la tabla de transacciones 
+                for(Transaction t : txn){
+                     // Si el depósito es igual a cero
+                     if(t.getDeposit() == 0){
+                         // Añade en columnas la fecha, descripción, signo "-", el retiro y subtotal
+                         modelTblTransactions.addRow(new Object[] {t.getTransactionDate(), t.getTransactionDescription(), String.format("%40s", "-"), 
+                             String.format("$%,31.2f", t.getWithdrawal()), String.format("$%,31.2f", t.getSubtotal())});
                          
                      }
-                     
-                     if(m.getRetiro() == 0){
-                         
-                         modelo3.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%,31.2f", m.getDeposito()), String.format("%40s", "-"), String.format("$%,31.2f", m.getSubtotal())});
+                     // Si el retiro es igual a cero
+                     if(t.getWithdrawal() == 0){
+                         // Añade en columnas la fecha, descripción, el depósito, el signo "-" y subtotal
+                         modelTblTransactions.addRow(new Object[] {t.getTransactionDate(), t.getTransactionDescription(), String.format("$%,31.2f", 
+                                 t.getDeposit()), String.format("%40s", "-"), String.format("$%,31.2f", t.getSubtotal())});
                          
                      }
                      
                  }
-                 
-                 
-                 
-                txtSaldoFinal.setText( String.format("%,35.2f", saldoFinal));
+                 // Muestra el saldo final
+                txfFinalBalance.setText( String.format("%,35.2f", finalBalance));
                 
             }
             
         }catch(NullPointerException e){
-            
-            JOptionPane.showMessageDialog(null, "Tienes que cargar un archivo json, o un archivo json con el formato adecuado", "ERROR", JOptionPane.ERROR_MESSAGE);
+            // Captura una excepción de tipo NullPointerException
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un archivo JSON con un formato correcto.", "ERROR", JOptionPane.ERROR_MESSAGE);
             
         }catch(Exception ex){
-            
-            JOptionPane.showMessageDialog(null,"Ocurrió un error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            // Captura cualquier otra excepción y muestra un mensaje de error
+            JOptionPane.showMessageDialog(null,"¡Oops! Ha sucedido un error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             
         }
         
     }//GEN-LAST:event_btnSeleccioneActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void cboMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMesActionPerformed
-    }//GEN-LAST:event_cboMesActionPerformed
-
-    private void cboMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboMesItemStateChanged
+    private void cbxMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMonthItemStateChanged
 
         try{
-
-                    DefaultTableModel modelo = (DefaultTableModel) tblResumenPeriodo.getModel();
-                    modelo.setRowCount(0);
-                    DefaultTableModel modelo2 = (DefaultTableModel) tblMovimientos.getModel();
-                    modelo2.setRowCount(0);
-                    //Cuenta mov2 = new Cuenta();
-                    float depositos = 0;
-                    float retiros = 0;
-                    float saldoFinal = 0;
+                // Obtiene los modelos de las tablas y limpia sus datos
+                DefaultTableModel modelTblPeriodSummary = (DefaultTableModel) tblPeriodSummary.getModel();
+                modelTblPeriodSummary.setRowCount(0);
+                DefaultTableModel modelTblTransactions = (DefaultTableModel) tblTransactions.getModel();
+                modelTblTransactions.setRowCount(0);
                 
-                    
-                mes = cboMes.getSelectedItem().toString();
+                // Variables para almacenar depósitos, retiros y saldo final
+                float deposits = 0;
+                float withdrawals = 0;
+                float finalBalance = 0;
                 
-                List<Movimiento> mov = operacion.obtenerMovimientos(mes, cuenta.getMovimientos()/*, cuenta.getAuxiliar03()*/);
-                float saldoAnterior = operacion.obtenerSaldoInicial(mes, cuenta.getMovimientos());
+                // Obtiene el mes seleccionado en el JComboBox    
+                month = cbxMonth.getSelectedItem().toString();
                 
-                //Cuenta mov2 = new Cuenta();
+                // Obtiene la lista de transacciones para el mes seleccionado
+                List<Transaction> mov = operation.getTransactions(month, account.getTransactions());
                 
-                //System.out.println("Hola");
+                // Obtiene el saldo inicial para el mes seleccionado
+                float saldoAnterior = operation.getInitialBalance(month, account.getTransactions());
                 
-                 for(Movimiento m : mov){
+                // Calcula depósitos, retiros y saldo final
+                for(Transaction m : mov){
                 
-                     depositos += m.getDeposito();
-                     retiros += m.getRetiro();
-                     saldoFinal = m.getSubtotal();
+                     deposits += m.getDeposit();
+                     withdrawals += m.getWithdrawal();
+                     finalBalance = m.getSubtotal();
                 
                 }
-                 
-                 modelo.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,34.2f", saldoAnterior)});
-                 modelo.addRow(new Object[] {"Depósitos", String.format("$%,34.2f", depositos)});
-                 modelo.addRow(new Object[] {"Retiros", String.format("$%,34.2f", retiros)});
-                 modelo.addRow(new Object[] {"Saldo final", String.format("$%,34.2f", saldoFinal)});//31839.30
-                 
-                 for(Movimiento m : mov){
+                 // Agrega filas a la tabla de resumen de periodo
+                modelTblPeriodSummary.addRow(new Object[] {"Saldo inicial (anterior)", String.format("$%,34.2f", saldoAnterior)});
+                modelTblPeriodSummary.addRow(new Object[] {"Depósitos", String.format("$%,34.2f", deposits)});
+                modelTblPeriodSummary.addRow(new Object[] {"Retiros", String.format("$%,34.2f", withdrawals)});
+                modelTblPeriodSummary.addRow(new Object[] {"Saldo final", String.format("$%,34.2f", finalBalance)});
+                
+                // Agrega filas a la tabla de transacciones
+                for(Transaction m : mov){
                      
-                      if(m.getDeposito() == 0){
+                      if(m.getDeposit() == 0){
                          
-                         modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("%40s", "-"), String.format("$%,31.2f", m.getRetiro()), String.format("$%,31.2f", m.getSubtotal())});
+                         modelTblTransactions.addRow(new Object[] {m.getTransactionDate(), m.getTransactionDescription(), String.format("%40s", "-"), 
+                             String.format("$%,31.2f", m.getWithdrawal()), String.format("$%,31.2f", m.getSubtotal())});
                          
                      }
                      
-                     if(m.getRetiro() == 0){
+                     if(m.getWithdrawal() == 0){
                          
-                        modelo2.addRow(new Object[] {m.getFechaOperacion(), m.getDescripcionOperacion(), String.format("$%,31.2f", m.getDeposito()), String.format("%40s", "-"), String.format("$%,31.2f", m.getSubtotal())});
+                        modelTblTransactions.addRow(new Object[] {m.getTransactionDate(), m.getTransactionDescription(), String.format("$%,31.2f", m.getDeposit()), 
+                            String.format("%40s", "-"), String.format("$%,31.2f", m.getSubtotal())});
                          
                      }
                      
                  }
-                 
-                  txtSaldoFinal.setText(String.format("%,35.2f", saldoFinal));
+                // Actualiza el campo de texto con el saldo final 
+                txfFinalBalance.setText(String.format("%,35.2f", finalBalance));
             
         }catch(Exception ex){
-            
-            JOptionPane.showMessageDialog(null,"Ocurrió un error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            // Muestra un mensaje de error en caso de excepción
+            JOptionPane.showMessageDialog(null,"¡Oops! Ha sucedido un error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             
         }
         
-    }//GEN-LAST:event_cboMesItemStateChanged
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_cbxMonthItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -552,7 +599,7 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSeleccione;
-    private javax.swing.JComboBox<String> cboMes;
+    private javax.swing.JComboBox<String> cbxMonth;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -564,25 +611,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JLabel lblEscudo;
     private javax.swing.JLabel lblImagen;
-    private javax.swing.JTable tblCuenta;
-    private javax.swing.JTable tblDatosCliente;
-    private javax.swing.JTable tblMovimientos;
-    private javax.swing.JTable tblResumenPeriodo;
-    private javax.swing.JTextField txtArchivo;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtSaldoFinal;
-    private javax.swing.JTextField txtTipoCuenta;
+    private javax.swing.JTable tblAccount;
+    private javax.swing.JTable tblCustomerInfo;
+    private javax.swing.JTable tblPeriodSummary;
+    private javax.swing.JTable tblTransactions;
+    private javax.swing.JTextField txfCustomerName;
+    private javax.swing.JTextField txfFile;
+    private javax.swing.JTextField txfFinalBalance;
+    private javax.swing.JTextField txtCustomerId;
     // End of variables declaration//GEN-END:variables
     
-        /*@Override
-        public Image getIconImage() {
-
-            Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("mx.itson.catrina.imagenes/expediente.png"));
-            
-            return retValue;
-
-        }*/
     
 }
